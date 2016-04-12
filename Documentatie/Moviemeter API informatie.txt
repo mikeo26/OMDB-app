@@ -1,0 +1,3 @@
+API Wiki: http://wiki.moviemeter.nl/index.php/API
+API key:3d91abb206c948bb7ca0b1b9b57be4aa
+
