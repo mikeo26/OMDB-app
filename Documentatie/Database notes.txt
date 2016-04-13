@@ -1,0 +1,8 @@
+database!
+
+Wishlist, watchlist, bekeken (films), collectie: ID -> API
+
+Gebruikers: e-mailadres, wachtwoord, gebruikersnaam
+
+NOTES:
+Wishlist/watchlist/ bekeken/collectie: userID, filmID per regel!
