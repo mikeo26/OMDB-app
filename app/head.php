@@ -7,9 +7,32 @@
 
 	<!-- Optional theme -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-fUMURLTdEcpeYHly3PAwggI3l2UvdHNg/I+8LRph7hLDcAZm77YfDx3Tjum9d3vK" crossorigin="anonymous">
+</head>
 
 <body>
-	<nav class="navbar navbar-default">
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				
+			</div>
+			<div class="col-sm-2">
+				<p class="info-mail">info@mdwa.nl</p>
+			</div>
+
+			<div class="col-md-6">
+				<a href="#" class="pull-right">test</a>
+				<a href="#" class="pull-right">test</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+			<img style="width: 100%;" src="assets/img/site-banner.jpg" alt="site-banner.jpg">
+	</div>
+
+
+	<nav class="navbar navbar-default" style="border-radius: 0">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -50,22 +73,3 @@
 	    </div>
 	  </div>
 	</nav>
-	
-	<div class="container">
-		<div class="row">
-
-		</div>
-		<div class="row">
-			<div class="col-sm-12 col-md-12">
-				<h2>Example body text</h2>
-				<p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-				<p><small>This line of text is meant to be treated as fine print.</small></p>
-				<p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
-				<p>The following snippet of text is <em>rendered as italicized text</em>.</p>
-				<p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
-			</div>
-		</div>
-	</div>
-	
-</body>
-</html>
