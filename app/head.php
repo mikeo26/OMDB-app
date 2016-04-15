@@ -27,13 +27,13 @@
 		</div>
 	</div>
 
-	<div class="row">
+
 			<img style="width: 100%;" src="assets/img/site-banner.jpg" alt="site-banner.jpg">
-	</div>
 
 
 	<nav class="navbar navbar-default" style="border-radius: 0">
 	  <div class="container-fluid">
+	  <div class="container">
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 	        <span class="sr-only">Toggle navigation</span>
@@ -70,6 +70,7 @@
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="#">Link</a></li>
 	      </ul>
+	    </div>
 	    </div>
 	  </div>
 	</nav>
