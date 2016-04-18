@@ -17,10 +17,7 @@
 
 			<div class="col-sm-4 col-md-4 col-lg-4">
 				<h3>Aanbevolen films</h3>
-				<p>Star Wars Episode VII: The force awakens</p>
-				<p>A few good men</p>
-				<p>The Shining</p>
-				<p>Jungle Book</p>
+				<span id="aanbevolenFilmContent"> <span id="aanbevolenFilmJaar"></span></span>
 			</div>
 		</div>
 	</div>

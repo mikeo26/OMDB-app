@@ -4,6 +4,7 @@
 	<title>Movie database web app | Home</title>
 	<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 	<script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="assets/js/queries.js"></script>
 
 	<!-- Optional theme -->
 	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-fUMURLTdEcpeYHly3PAwggI3l2UvdHNg/I+8LRph7hLDcAZm77YfDx3Tjum9d3vK" crossorigin="anonymous">
