@@ -7,7 +7,7 @@
 	<script src="assets/js/queries.js"></script>
 
 	<!-- Optional theme -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-fUMURLTdEcpeYHly3PAwggI3l2UvdHNg/I+8LRph7hLDcAZm77YfDx3Tjum9d3vK" crossorigin="anonymous">
+	<link href="https://bootswatch.com/cerulean/bootstrap.min.css">
 </head>
 
 <body>
