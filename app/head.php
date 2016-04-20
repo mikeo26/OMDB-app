@@ -7,7 +7,7 @@
 	<script src="assets/js/queries.js"></script>
 
 	<!-- Optional theme -->
-	<link href="https://bootswatch.com/cerulean/bootstrap.min.css">
+	<link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
 </head>
 
 <body>
