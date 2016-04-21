@@ -18,9 +18,9 @@
 
 			<img style="width: 100%;" src="assets/img/site-banner.jpg" alt="site-banner.jpg">
 				<div class="container">
-		<div class="top-head row">
+		<div class="top-head">
 			<div class="col-sm-12">
-				<p class="info-mail text-center"><span>info@mdwa.nl</span> <a href="#" class="pull-right">Inloggen</a> <a href="#" class="pull-right" style="margin-right:5px;">Registreren</a> </p>
+				<p class="info-mail text-center">info@mdwa.nl</span><a href="#" class="pull-right">Inloggen</a> <a href="#" class="pull-right" style="margin-right:5px;">Registreren</a> </p>
 
 				</div>
 		</div>
