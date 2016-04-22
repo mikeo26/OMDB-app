@@ -8,18 +8,13 @@ $.ajax({
   async: true,
   success: function(data){
 
-    // if(data){
-    //         i=0;
-    //         $('#aanbevolenFilmsContent').append(data[i].title);
-    //         $('.loading').hide();
-    //         console.log(data);
-    //     }
-    // },
-
     for(i=0; i < 7; i++){
             $('#aanbevolenFilmContent').append("(" + data[i].year + ") " + data[i].title + "<br />");
             $('.loading').hide();
             console.log(data[i].title);
+
+            // var movieId = data[i].id;
+            // $('aanbevolenFilmPoster').append(data[i].posters.small);
         }
     },
     error: function(){

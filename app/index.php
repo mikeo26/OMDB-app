@@ -17,7 +17,13 @@
 
 			<div class="col-sm-4 col-md-4 col-lg-4">
 				<h3>Aanbevolen films</h3>
+				<div class="loading">
+					<img src="assets/img/loading.gif" alt="Laden..." class="loading">
+					<br>
+					<p> Aanbevolen films aan het laden...</p>
+				</div>
 				<span id="aanbevolenFilmContent"> <span id="aanbevolenFilmJaar"></span></span>
+				<div id="aanbevolenFilmsPoster"></div>
 			</div>
 		</div>
 	</div>
