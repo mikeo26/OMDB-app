@@ -25,7 +25,7 @@ require 'assets/config.php';
 				<div class="container">
 		<div class="top-head">
 			<div class="col-sm-12">
-				<p class="info-mail text-center">info@mdwa.nl</span><a href="#" class="pull-right">Inloggen</a> <a href="#" class="pull-right" style="margin-right:5px;">Registreren</a> </p>
+				<p class="info-mail text-center">info@mdwa.nl</span><a href="#" class="pull-right">Inloggen</a> <a href="registreren" class="pull-right" style="margin-right:5px;">Registreren</a> </p>
 
 				</div>
 		</div>
@@ -42,12 +42,12 @@ require 'assets/config.php';
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">MDWA</a>
+	      <a class="navbar-brand" href="index">MDWA</a>
 	    </div>
 
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+	        <li class="active"><a href="index">Home <span class="sr-only">(current)</span></a></li>
 	        <li><a href="/films">Films</a></li>
 	        <li><a href="/zoeken">Zoeken</a></li>
 			<li class="dropdown">
@@ -64,7 +64,7 @@ require 'assets/config.php';
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search">
+	          <input type="text" class="form-control" placeholder="Zoeken &hellip;">
 	        </div>
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </form>
