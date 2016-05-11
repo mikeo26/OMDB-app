@@ -1,7 +1,12 @@
+<?php
+
+require 'assets/config.php';
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Movie database web app | Home</title>
+	<title></title>
 	<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 	<script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="assets/js/queries.js"></script>

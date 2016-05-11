@@ -7,5 +7,19 @@
 		</div>
 	</div>
 	
+
+<script>
+var url = window.location.href;
+var index = url.lastIndexOf("/") + 1;
+var filename = url.substr(index);
+
+if (filename == '') {
+	var filename = 'Home';
+}
+
+$(document).ready(function(){
+	$(document).prop('title', 'Movie database web app | ' + filename)
+});
+</script>
 </body>
 </html>
