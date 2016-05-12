@@ -3,3 +3,5 @@ API Wiki: http://wiki.moviemeter.nl/index.php/API
 API key:
 3d91abb206c948bb7ca0b1b9b57be4aa
 
+API test link: 
+http://www.moviemeter.nl/api/film/30243&api_key=3d91abb206c948bb7ca0b1b9b57be4aa
