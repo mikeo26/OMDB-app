@@ -47,20 +47,20 @@ require 'assets/config.php';
 
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="index">Home <span class="sr-only">(current)</span></a></li>
-	        <li><a href="/films">Films</a></li>
-	        <li><a href="/zoeken">Zoeken</a></li>
+	        <li><a href="http://localhost/omdb-app/app/index">Home <span class="sr-only">(current)</span></a></li>
+	        <li><a href="films">Films</a></li>
+	        <li><a href="zoeken">Zoeken</a></li>
 			<li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mijn account <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="/mijnaccount">Mijn account</a></li>
-	            <li><a href="/registreren">Registreren</a></li>
-	            <li><a href="/inloggen">Inloggen</a></li>
+	            <li><a href="mijnaccount">Mijn account</a></li>
+	            <li><a href="registreren">Registreren</a></li>
+	            <li><a href="inloggen">Inloggen</a></li>
 	            <li class="divider"></li>
 	            <li><a href="#">Info</a></li>
 	          </ul>
 	        </li>
-	        <li><a href="/contact">Contact</a></li>
+	        <li><a href="contact">Contact</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
 	        <div class="form-group">
