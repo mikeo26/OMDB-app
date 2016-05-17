@@ -20,10 +20,6 @@ if (filename == '') {
 $(document).ready(function(){
 	$(document).prop('title', 'Movie database web app | ' + filename)
 });
-function randomIntFromInterval(min,max)
-{
-    return Math.floor(Math.random()*(max-min+1)+min);
-}
 
 jQuery(document).ready(function($){
     // Get current url
@@ -32,7 +28,17 @@ jQuery(document).ready(function($){
 $('.nav a').filter(function() {
     return this.href == url;
 }).parent().addClass('active');
+$("#registerForm").validate({
+	rules: {
+		herhaalwachtwoord: {
+			equalTo: "#wachtwoord"
+		}
+	}
 });
+$("#loginForm").validate();
+});
+
+
 </script>
 </body>
 </html>

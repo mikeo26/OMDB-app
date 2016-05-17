@@ -1,6 +1,7 @@
 <?php
 
 require 'assets/config.php';
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -10,6 +11,7 @@ require 'assets/config.php';
 	<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 	<script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="assets/js/queries.js"></script>
+	<script src="assets/js/jquery.validate.min.js"></script>
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="assets/css/style.css">
@@ -25,7 +27,14 @@ require 'assets/config.php';
 				<div class="container">
 		<div class="top-head">
 			<div class="col-sm-12">
-				<p class="info-mail text-center">info@mdwa.nl</span><a href="#" class="pull-right">Inloggen</a> <a href="registreren" class="pull-right" style="margin-right:5px;">Registreren</a> </p>
+				<p class="info-mail text-center">info@mdwa.nl</span>
+				<?php
+				if(isset($_SESSION['user'])) { 
+					echo "<a href='logout' class='pull-right'>Uitloggen</a>";
+				} else {
+					echo '<a href="inloggen" class="pull-right">Inloggen</a> <a href="registreren" class="pull-right" style="margin-right:5px;">Registreren</a> </p>';
+				}
+				?>
 
 				</div>
 		</div>
@@ -50,16 +59,27 @@ require 'assets/config.php';
 	        <li><a href="http://localhost/omdb-app/app/index">Home <span class="sr-only">(current)</span></a></li>
 	        <li><a href="films">Films</a></li>
 	        <li><a href="zoeken">Zoeken</a></li>
+			<?php if(!isset($_SESSION['user'])) {
+				?>
 			<li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mijn account <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
 	            <li><a href="mijnaccount">Mijn account</a></li>
+	            <li class="divider"></li>
 	            <li><a href="registreren">Registreren</a></li>
 	            <li><a href="inloggen">Inloggen</a></li>
-	            <li class="divider"></li>
-	            <li><a href="#">Info</a></li>
 	          </ul>
 	        </li>
+			<?php } else { ?>
+			<li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mijn account <span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu">
+	            <li><a href="mijnaccount">Mijn account</a></li>
+	            <li class="divider"></li>
+	            <li><a href="logout">Uitloggen</a></li>
+	          </ul>
+	        </li>
+	        <?php } ?>
 	        <li><a href="contact">Contact</a></li>
 	      </ul>
 	      <form class="navbar-form navbar-right" role="search">
@@ -72,3 +92,5 @@ require 'assets/config.php';
 	    </div>
 	  </div>
 	</nav>
+
+	<?php if(isset($_SESSION['registered'])) { echo $_SESSION['registered']; }
