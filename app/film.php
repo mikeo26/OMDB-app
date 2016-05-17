@@ -8,7 +8,7 @@
 		header("location: 404");
 	} else if (empty($_GET['movie-id'])) { // als GET movie-id leeg is, ga naar 404 pagina
 		header("location: 404");
-	} else if (!is_int($_GET['movie-id'])){ // als GET movie-id geen nummer is, ga naar 404 pagina
+	} else if (!is_numeric($_GET['movie-id'])){ // als GET movie-id geen nummer is, ga naar 404 pagina
 		header ("location: 404");
 	} else {
 		$movieId = $_GET['movie-id'];
