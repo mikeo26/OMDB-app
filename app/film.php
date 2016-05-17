@@ -20,14 +20,13 @@
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			<span id="movie-id" style="display: none;"><?= $movieId ?></span>
+			<span id="movie-imdb" style="display: none"></span>
 			<h1 class="movie-title"></h1>
 		</div>
 	</div>
 
 	<div class="row">
-		<div class="col-sm-4 col-md-4 col-lg-4 movie-poster">
-<!--  			<img src="assets/img/movie-poster.jpg" alt="Movie poster" class="movie-poster img-rounded" style="width: 100%">
- --> 		</div>
+		<div class="col-sm-4 col-md-4 col-lg-4 movie-poster"></div>
 
 		<div class="col-sm-8 col-md-8 col-lg-8">
 			<p class="movie-plot"><br></p>
@@ -35,7 +34,12 @@
 			<small class="movie-director">Regiseur: &nbsp;</small><br>
 			<small class="movie-actors">Acteurs: &nbsp;</small><br>
 			<small class="movie-duration">Speelduur: <span class="movie-time"></span> minuten</small><br>
-			<small class="movie-rating">Waardering: <span class="movie-score"></span>/5</small>
+			<small class="movie-rating">Waardering
+				<p style="width: 70px !important">
+					<span class="movie-score" style="background-image:url('assets/img/rating.png');height: 14px; display: block">
+					</span>
+				</p>
+			</small>
 		</div>
 	</div>
 </div>
@@ -53,9 +57,10 @@ $.ajax({
 	success: function(data){
 	$('.loading').hide();
 
-	var moviePoster  = data.posters.regular;
-	$('.movie-poster').append('<img src="'+ moviePoster +'" alt="Kan film poster van ' + data.title + ' niet vinden"/>');      
+	// var moviePoster  = data.posters.regular;
+	// $('.movie-poster').append('<img src="'+ moviePoster +'" alt="Kan film poster van ' + data.title + ' niet vinden"/>');      
 	$('.movie-title').append(data.title + " <small>(" + data.year + ")</small>");
+	$('#movie-imdb').append(data.imdb);
 
 	// Movie genres
 	for(i=0; i < data.genres.length; i++){
@@ -68,22 +73,42 @@ $.ajax({
 
 	$('.movie-plot').append(data.plot);
 	$('.movie-director').append(data.directors);
+
 	  // $('.movie-actors').append(data.actors[0].name); //nog loopen door alle acteurs
 	for(i=0; i < data.actors.length; i++){
 	  $('.movie-actors').append(data.actors[i].name);
 	  $('.movie-actors').append(', ');
 	}
-
 	var x = $('.movie-actors').html();
 	var z = x.slice(0,-2);
 	$('.movie-actors').replaceWith('<small class="movie-actors">' + z + "</small>");
 
 	$('.movie-time').append(data.duration);
-	$('.movie-score').append(data.average);
+	
+	// movie rating * 20 = with in percentages
+	var rating = data.average * 20;
+	$('.movie-score').css('width', rating+ '%');
+
+	var imdb = document.getElementById('movie-imdb').innerHTML;
+	console.log(imdb);
+	$.ajax({
+		type: 'GET',
+		url: 'http://www.omdbapi.com/?apikey=acb7db4&i=' + imdb,
+		success: function(omdb){
+			$('.movie-poster').append("<img src='" + omdb.Poster + "' class='movie-poster' />");
+			console.log(omdb.Poster);
+		},
+		error: function(){
+			// error handling
+			console.log('Kan poster niet ophalen');
+		}
+	});
+
+
 	},
 	error: function(){
-	$('#aanbevolenFilmsContent').append(errormsg);
 	$('.loading').hide();
+	$('.container').append(errormsg);
 	},
 	timeout: 5000 // set timeout to 5 seconds
 });
