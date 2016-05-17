@@ -50,28 +50,36 @@ $.ajax({
 	type: "GET",
 	cache: false,
 	async: true,
-	success: function(data){   
+	success: function(data){
+	$('.loading').hide();
+
 	var moviePoster  = data.posters.regular;
-	console.log(moviePoster);
 	$('.movie-poster').append('<img src="'+ moviePoster +'" alt="Kan film poster van ' + data.title + ' niet vinden"/>');      
 	$('.movie-title').append(data.title + " <small>(" + data.year + ")</small>");
 
-	  for(i=0; i < data.genres.length; i++){
-	  	$('.movie-genres').append(data.genres[i]);
-	  	$('.movie-genres').append(', ');
-	  }
+	// Movie genres
+	for(i=0; i < data.genres.length; i++){
+	  $('.movie-genres').append(data.genres[i]);
+	  $('.movie-genres').append(', ');
+	}
+	var x = $('.movie-genres').html();
+	var z = x.slice(0,-2);
+	$('.movie-genres').replaceWith('<small class="movie-genres">' + z + "</small>");
 
-	  $('.movie-plot').append(data.plot);
-	  $('.movie-director').append(data.directors);
+	$('.movie-plot').append(data.plot);
+	$('.movie-director').append(data.directors);
 	  // $('.movie-actors').append(data.actors[0].name); //nog loopen door alle acteurs
-	  for(i=0; i < data.actors.length; i++){
-	  	$('.movie-actors').append(data.actors[i].name);
-	  	$('.movie-actors').append(', ');
-	  }
+	for(i=0; i < data.actors.length; i++){
+	  $('.movie-actors').append(data.actors[i].name);
+	  $('.movie-actors').append(', ');
+	}
 
-	  $('.movie-time').append(data.duration);
-	  $('.movie-score').append(data.average);
-	  $('.loading').hide();
+	var x = $('.movie-actors').html();
+	var z = x.slice(0,-2);
+	$('.movie-actors').replaceWith('<small class="movie-actors">' + z + "</small>");
+
+	$('.movie-time').append(data.duration);
+	$('.movie-score').append(data.average);
 	},
 	error: function(){
 	$('#aanbevolenFilmsContent').append(errormsg);
@@ -79,7 +87,6 @@ $.ajax({
 	},
 	timeout: 5000 // set timeout to 5 seconds
 });
-
 </script>
 
 <?php include('footer.php'); ?>
