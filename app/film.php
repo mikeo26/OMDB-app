@@ -21,7 +21,6 @@
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			<span id="movie-id" style="display: none;"><?= $movieId ?></span>
 			<span id="movie-imdb" style="display: none"></span>
-			<h1 class="movie-title"></h1>
 		</div>
 	</div>
 
@@ -29,17 +28,33 @@
 		<div class="col-sm-4 col-md-4 col-lg-4 movie-poster"></div>
 
 		<div class="col-sm-8 col-md-8 col-lg-8">
+			<h1 class="movie-title"></h1>
 			<p class="movie-plot"><br></p>
 			<small class="movie-genres">Genres: </small><br>
 			<small class="movie-director">Regiseur: &nbsp;</small><br>
 			<small class="movie-actors">Acteurs: &nbsp;</small><br>
-			<small class="movie-duration">Speelduur: <span class="movie-time"></span> minuten</small><br>
-			<small class="movie-rating">Waardering
-				<p style="width: 70px !important">
+			<small class="movie-duration">Speelduur: <span class="movie-time"></span> minuten</small><br><br>
+			<small class="movie-mmrating">Moviemeter.nl waardering
+				<p style="width: 140px !important">
 					<span class="movie-score" style="background-image:url('assets/img/rating.png');height: 14px; display: block">
 					</span>
 				</p>
 			</small>
+
+			<small class="movie-imdb">IMDB waardering
+				<p style="width: 140px !important">
+					<span class="movie-imdb-rating" style="background-image:url('assets/img/rating.png'); height: 14px; display: block"></span>
+				</p>
+			</small>
+
+			<small class="movie-metascore">Metascore
+				<p style="width: 140px !important">
+					<span class="movie-metascore-rating" style="background-image:url('assets/img/rating.png'); height: 14px; display: block"></span>
+				</p>
+			</small>
+
+			// document.getElementsByTagName("H1")[0].setAttribute("class", "democlass");
+			<a href="#" ><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
 		</div>
 	</div>
 </div>
@@ -90,13 +105,17 @@ $.ajax({
 	$('.movie-score').css('width', rating+ '%');
 
 	var imdb = document.getElementById('movie-imdb').innerHTML;
-	console.log(imdb);
 	$.ajax({
 		type: 'GET',
 		url: 'http://www.omdbapi.com/?apikey=acb7db4&i=' + imdb,
 		success: function(omdb){
 			$('.movie-poster').append("<img src='" + omdb.Poster + "' class='movie-poster' />");
-			console.log(omdb.Poster);
+
+			var imdbRating = omdb.imdbRating * 10;
+			$('.movie-imdb-rating').css('width', imdbRating + '%');
+
+			var metascore = omdb.Metascore;
+			$('.movie-metascore-rating').css('width', metascore + '%');
 		},
 		error: function(){
 			// error handling

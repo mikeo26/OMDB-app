@@ -17,10 +17,19 @@
 }
 
 .movie-poster{
-	width: 100%;
-	max-width: ;
 	display: block;
 	margin: 0 auto;
+}
+
+.imdb-logo{
+    width: 50px;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.imdb-logo:hover{
+    opacity: 0.7;
+
 }
 
 @media screen and (max-width: 767px){
@@ -28,4 +37,10 @@
 		max-width: 220px;
 	}
 
+}
+
+@media screen and (min-width: 768px){
+    h1.movie-title{
+        margin-top: 0;
+    }
 }
