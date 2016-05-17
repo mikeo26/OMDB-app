@@ -9,10 +9,15 @@ if(!isset($_SESSION['user'])) {
 	
 	<div class="container">
 		<div class="row">
-
-		</div>
-		<div class="row">
 			<div class="col-sm-12 col-md-12 col-lg-12">
+			<?php
+				if(isset($_GET['msg'])) {
+					if($_GET['msg'] === 'ingelogd') {
+						echo "<p class='text-success'><em>U bent succesvol ingelogd.</em></p>";
+					}
+				}
+
+			?>
 				<h1>Mijn account</h1>
 			</div>
 		</div>

@@ -16,6 +16,6 @@ if(isset($_POST['inloggen'])) {
 	if(password_verify($wachtwoord, $dbpass)) {
 		session_start();
 		$_SESSION['user'] = $user->gebruikersid;
-		header("location: ../index?msg=ingelogd");
+		header("location: ../mijnaccount?msg=ingelogd");
 	} 
 }
