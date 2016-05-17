@@ -36,6 +36,7 @@ $("#registerForm").validate({
 	}
 });
 $("#loginForm").validate();
+$("#contactForm").validate();
 });
 
 
