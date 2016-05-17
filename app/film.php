@@ -5,11 +5,11 @@
 	// random movie-id: 104182
 
 	if(!isset($_GET['movie-id'])) { // als GET movie-id niet bestaat, ga naar 404 pagina
-		header("location: 404.php");
+		header("location: 404");
 	} else if (empty($_GET['movie-id'])) { // als GET movie-id leeg is, ga naar 404 pagina
-		header("location: 404.php");
-	} else if (is_int($_GET['movie-id'])){ // als GET movie-id geen nummer is, ga naar 404 pagina
-		header ("location: 404.php");
+		header("location: 404");
+	} else if (!is_int($_GET['movie-id'])){ // als GET movie-id geen nummer is, ga naar 404 pagina
+		header ("location: 404");
 	} else {
 		$movieId = $_GET['movie-id'];
 	}
@@ -25,9 +25,9 @@
 	</div>
 
 	<div class="row">
-		<div class="col-sm-4 col-md-4 col-lg-4">
- 			<img src="assets/img/movie-poster.jpg" alt="Movie poster" class="movie-poster img-rounded" style="width: 100%">
- 		</div>
+		<div class="col-sm-4 col-md-4 col-lg-4 movie-poster">
+<!--  			<img src="assets/img/movie-poster.jpg" alt="Movie poster" class="movie-poster img-rounded" style="width: 100%">
+ --> 		</div>
 
 		<div class="col-sm-8 col-md-8 col-lg-8">
 			<p class="movie-plot"><br></p>
@@ -50,8 +50,11 @@ $.ajax({
 	type: "GET",
 	cache: false,
 	async: true,
-	success: function(data){          
-	  $('.movie-title').append(data.title + " <small>(" + data.year + ")</small>");
+	success: function(data){   
+	var moviePoster  = data.posters.regular;
+	console.log(moviePoster);
+	$('.movie-poster').append('<img src="'+ moviePoster +'" alt="Kan film poster van ' + data.title + ' niet vinden"/>');      
+	$('.movie-title').append(data.title + " <small>(" + data.year + ")</small>");
 
 	  for(i=0; i < data.genres.length; i++){
 	  	$('.movie-genres').append(data.genres[i]);
