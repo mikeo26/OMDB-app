@@ -22,8 +22,7 @@
 					<br>
 					<p> Aanbevolen films aan het laden...</p>
 				</div>
-				<span id="aanbevolenFilmContent"> <span id="aanbevolenFilmJaar"></span></span>
-				<div id="aanbevolenFilmsPoster"></div>
+				<div id="aanbevolenFilmContent" class="aanbevolen-films"></div>
 			</div>
 		</div>
 	</div>

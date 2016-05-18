@@ -29,6 +29,10 @@
 
 		<div class="col-sm-8 col-md-8 col-lg-8">
 			<h1 class="movie-title"></h1>
+			<a href="#" id="bekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon"/></a>
+			<a href="#" id="collectie"><img src="assets/img/collectie.jpg" alt="Collectie" title="Collectie" class="icon"></a>
+			<a href="#"><img src="assets/img/wishlist.png" alt="Wishlist" title="Wishlist" class="icon"></a>
+			<a href="#"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon"></a>
 			<p class="movie-plot"><br></p>
 			<small class="movie-genres">Genres: </small><br>
 			<small class="movie-director">Regiseur: &nbsp;</small><br>
@@ -53,8 +57,8 @@
 				</p>
 			</small>
 
-			// document.getElementsByTagName("H1")[0].setAttribute("class", "democlass");
-			<a href="#" ><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
+			<a href="#" id="imdb-link" target="_blank" title="IMDb"><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
+			<a href="#" id="moviemeter-link" target="_blank" title="Movie meter"> <img src="assets/img/moviemeter-logo.png" alt="Movie meter logo" class="moviemeter-logo" /></a>
 		</div>
 	</div>
 </div>
@@ -71,9 +75,7 @@ $.ajax({
 	async: true,
 	success: function(data){
 	$('.loading').hide();
-
-	// var moviePoster  = data.posters.regular;
-	// $('.movie-poster').append('<img src="'+ moviePoster +'" alt="Kan film poster van ' + data.title + ' niet vinden"/>');      
+	    
 	$('.movie-title').append(data.title + " <small>(" + data.year + ")</small>");
 	$('#movie-imdb').append(data.imdb);
 
@@ -104,26 +106,28 @@ $.ajax({
 	var rating = data.average * 20;
 	$('.movie-score').css('width', rating+ '%');
 
+	document.getElementById('moviemeter-link').setAttribute("href", data.url);
+
 	var imdb = document.getElementById('movie-imdb').innerHTML;
-	$.ajax({
-		type: 'GET',
-		url: 'http://www.omdbapi.com/?apikey=acb7db4&i=' + imdb,
-		success: function(omdb){
-			$('.movie-poster').append("<img src='" + omdb.Poster + "' class='movie-poster' />");
+		$.ajax({
+			type: 'GET',
+			url: 'http://www.omdbapi.com/?apikey=acb7db4&i=' + imdb,
+			success: function(omdb){
+				$('.movie-poster').append("<img src='" + omdb.Poster + "' class='movie-poster' />");
 
-			var imdbRating = omdb.imdbRating * 10;
-			$('.movie-imdb-rating').css('width', imdbRating + '%');
+				var imdbRating = omdb.imdbRating * 10;
+				$('.movie-imdb-rating').css('width', imdbRating + '%');
 
-			var metascore = omdb.Metascore;
-			$('.movie-metascore-rating').css('width', metascore + '%');
-		},
-		error: function(){
-			// error handling
-			console.log('Kan poster niet ophalen');
-		}
-	});
+				var metascore = omdb.Metascore;
+				$('.movie-metascore-rating').css('width', metascore + '%');
 
-
+				document.getElementById('imdb-link').setAttribute("href", "http://www.imdb.com/title/" + omdb.imdbID);
+			},
+			error: function(){
+				// error handling
+				console.log('Kan poster niet ophalen');
+			}
+		});
 	},
 	error: function(){
 	$('.loading').hide();

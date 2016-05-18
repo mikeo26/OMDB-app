@@ -59,8 +59,8 @@
 			<div class="col-sm-4 col-md-4 col-lg-4">
 				<h2>Contactgegevens</h2>
 				Peter van der krift<br>
-				Kriftstraat 5a<br>
-				8917 BE Breda
+				Aardrijk 67<br>
+				4824 BT Breda
 
 			</div>
 		</div>

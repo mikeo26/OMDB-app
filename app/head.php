@@ -56,7 +56,7 @@ session_start();
 
 	    <div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
 	      <ul class="nav navbar-nav">
-	        <li><a href="http://localhost/omdb-app/app/index">Home <span class="sr-only">(current)</span></a></li>
+	        <li><a href="index">Home <span class="sr-only">(current)</span></a></li>
 	        <li><a href="films">Films</a></li>
 	        <li><a href="zoeken">Zoeken</a></li>
 			<?php if(!isset($_SESSION['user'])) {

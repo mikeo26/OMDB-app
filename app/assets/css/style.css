@@ -21,15 +21,21 @@
 	margin: 0 auto;
 }
 
-.imdb-logo{
+.imdb-logo,
+.moviemeter-logo{
     width: 50px;
     opacity: 1;
     transition: opacity 0.3s;
 }
 
-.imdb-logo:hover{
+.imdb-logo:hover,
+.moviemeter-logo:hover{
     opacity: 0.7;
 
+}
+
+.icon{
+    width: 50px;
 }
 
 @media screen and (max-width: 767px){
@@ -43,4 +49,9 @@
     h1.movie-title{
         margin-top: 0;
     }
+}
+
+.aanbevolen-films .movie-poster{
+    max-width: 100px;
+    margin: 0;
 }
