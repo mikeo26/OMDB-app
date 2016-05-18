@@ -29,10 +29,10 @@
 
 		<div class="col-sm-8 col-md-8 col-lg-8">
 			<h1 class="movie-title"></h1>
-			<a href="#" id="bekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon"/></a>
-			<a href="#" id="collectie"><img src="assets/img/collectie.jpg" alt="Collectie" title="Collectie" class="icon"></a>
-			<a href="#"><img src="assets/img/wishlist.png" alt="Wishlist" title="Wishlist" class="icon"></a>
-			<a href="#"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon"></a>
+			<a href="#" id="bekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></a>
+			<a href="#" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></a>
+			<a href="#"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"></a>
+			<a href="#"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></a>
 			<p class="movie-plot"><br></p>
 			<small class="movie-genres">Genres: </small><br>
 			<small class="movie-director">Regiseur: &nbsp;</small><br>
@@ -104,7 +104,15 @@ $.ajax({
 	
 	// movie rating * 20 = with in percentages
 	var rating = data.average * 20;
-	$('.movie-score').css('width', rating+ '%');
+	if(rating == 0){
+		$('.movie-score').append('<b>Movie meter rating niet beschikbaar </b> <br><br>')
+							.css("width", '100%')
+							.css('background-image', 'none')
+							.addClass('no-rating');
+	}else{
+		$('.movie-score').css('width', rating+ '%');
+	}
+	
 
 	document.getElementById('moviemeter-link').setAttribute("href", data.url);
 

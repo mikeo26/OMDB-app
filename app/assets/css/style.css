@@ -31,11 +31,23 @@
 .imdb-logo:hover,
 .moviemeter-logo:hover{
     opacity: 0.7;
-
 }
 
 .icon{
     width: 50px;
+}
+
+.no-rating{
+    margin-bottom: 30px;
+}
+
+.icon.inactive{
+    opacity: 0.7;
+    transition: all 0.3s;
+}
+
+.icon.inactive:hover{
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 767px){
