@@ -23,7 +23,7 @@ if(isset($_SESSION['user'])) {
 
 			?>
 				<h2>Registreren</h2>
-				<p>Wilt u uw eigen filmcollectie, wishlist en watchlist bij kunnen houden? Dan kunt u hier een eigen account aan maken om dat te kunnen doen.</p>
+				<p>Wilt u uw eigen filmcollectie, wishlist en watchlist bij kunnen houden? Dan kunt u hier een eigen aan maken om dat te kunnen doen.</p>
 					<form class="form-horizontal" method="POST" action="assets/register.php" id="registerForm">
 					  <fieldset>
 					    <legend>Formulier</legend>
