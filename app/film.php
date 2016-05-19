@@ -1,9 +1,6 @@
-<?php include('head.php'); ?>
-
-<?php
-
+<!-- Author: Menno van der Krift -->
+<?php include('head.php');
 	// random movie-id: 104182
-
 	if(!isset($_GET['movie-id'])) { // als GET movie-id niet bestaat, ga naar 404 pagina
 		header("location: 404");
 	} else if (empty($_GET['movie-id'])) { // als GET movie-id leeg is, ga naar 404 pagina
@@ -25,9 +22,9 @@
 	</div>
 
 	<div class="row">
-		<div class="col-sm-4 col-md-4 col-lg-4 movie-poster"></div>
+		<div class="col-sm-6 col-md-4 col-lg-4 movie-poster"> <img src="assets/img/loading.gif" alt="Loading..." style="display: block; margin: 0 auto" class="loading-poster"/></div>
 
-		<div class="col-sm-8 col-md-8 col-lg-8">
+		<div class="col-sm-6 col-md-8 col-lg-8">
 			<h1 class="movie-title"></h1>
 			<a href="#" id="bekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></a>
 			<a href="#" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></a>
@@ -35,23 +32,23 @@
 			<a href="#"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></a>
 			<p class="movie-plot"><br></p>
 			<small class="movie-genres">Genres: </small><br>
-			<small class="movie-director">Regiseur: &nbsp;</small><br>
+			<small class="movie-directors">Regiseur: &nbsp;</small><br>
 			<small class="movie-actors">Acteurs: &nbsp;</small><br>
 			<small class="movie-duration">Speelduur: <span class="movie-time"></span> minuten</small><br><br>
-			<small class="movie-mmrating">Moviemeter.nl waardering
+			<small class="movie-mmrating rating">Moviemeter.nl waardering
 				<p style="width: 140px !important">
 					<span class="movie-score" style="background-image:url('assets/img/rating.png');height: 14px; display: block">
 					</span>
 				</p>
 			</small>
 
-			<small class="movie-imdb">IMDB waardering
+			<small class="movie-imdb rating">IMDB waardering
 				<p style="width: 140px !important">
 					<span class="movie-imdb-rating" style="background-image:url('assets/img/rating.png'); height: 14px; display: block"></span>
 				</p>
 			</small>
 
-			<small class="movie-metascore">Metascore
+			<small class="movie-metascore rating">Metascore
 				<p style="width: 140px !important">
 					<span class="movie-metascore-rating" style="background-image:url('assets/img/rating.png'); height: 14px; display: block"></span>
 				</p>
@@ -89,9 +86,16 @@ $.ajax({
 	$('.movie-genres').replaceWith('<small class="movie-genres">' + z + "</small>");
 
 	$('.movie-plot').append(data.plot);
-	$('.movie-director').append(data.directors);
 
-	  // $('.movie-actors').append(data.actors[0].name); //nog loopen door alle acteurs
+	for(i=0; i < data.directors.length; i++){
+	  $('.movie-directors').append(data.directors[i]);
+	  $('.movie-directors').append(', ');
+	}
+	var x = $('.movie-directors').html();
+	var z = x.slice(0,-2);
+	$('.movie-directors').replaceWith('<small class="movie-directors">' + z + "</small>");
+
+
 	for(i=0; i < data.actors.length; i++){
 	  $('.movie-actors').append(data.actors[i].name);
 	  $('.movie-actors').append(', ');
@@ -121,7 +125,12 @@ $.ajax({
 			type: 'GET',
 			url: 'http://www.omdbapi.com/?apikey=acb7db4&i=' + imdb,
 			success: function(omdb){
-				$('.movie-poster').append("<img src='" + omdb.Poster + "' class='movie-poster' />");
+				$('.loading-poster').hide();
+				if (omdb.Poster == 'N/A' || omdb.Poster == undefined){
+					$('.movie-poster').append("<img src='assets/img/no-poster.jpg' class='movie-poster' />");
+				}else{
+					$('.movie-poster').append("<img src='" + omdb.Poster + "' class='movie-poster' />");
+				}
 
 				var imdbRating = omdb.imdbRating * 10;
 				$('.movie-imdb-rating').css('width', imdbRating + '%');
@@ -133,7 +142,7 @@ $.ajax({
 			},
 			error: function(){
 				// error handling
-				console.log('Kan poster niet ophalen');
+				$('.movie-poster').append("<p>Oops! Kan de film poster niet vinden :(</p>");
 			}
 		});
 	},

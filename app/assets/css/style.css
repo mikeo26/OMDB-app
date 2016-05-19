@@ -41,6 +41,10 @@
     margin-bottom: 30px;
 }
 
+.rating{
+    display: inline-block;
+}
+
 .icon.inactive{
     opacity: 0.7;
     transition: all 0.3s;
@@ -48,6 +52,10 @@
 
 .icon.inactive:hover{
     opacity: 0.8;
+}
+
+.errormsg{
+    color: red;
 }
 
 @media screen and (max-width: 767px){
@@ -66,4 +74,12 @@
 .aanbevolen-films .movie-poster{
     max-width: 100px;
     margin: 0;
+}
+
+max 991
+
+@media screen and (max-width: 991px){
+    .movie-poster{
+        max-width: 100%;
+    }
 }
