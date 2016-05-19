@@ -30,16 +30,12 @@
 			<a href="#" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></a>
 			<a href="#"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"></a>
 			<a href="#"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></a>
+			
 			<p class="movie-plot"><br></p>
 			<small class="movie-genres">Genres: </small><br>
 			<small class="movie-directors">Regiseur: &nbsp;</small><br>
 			<small class="movie-actors">Acteurs: &nbsp;</small><br>
 			<small class="movie-duration">Speelduur: <span class="movie-time"></span></small><br><br>
-
-
-
-
-
 
 			<a href="#" id="imdb-link" target="_blank" title="IMDb"><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
 			<a href="#" id="moviemeter-link" target="_blank" title="Movie meter"> <img src="assets/img/moviemeter-logo.png" alt="Movie meter logo" class="moviemeter-logo" /></a>

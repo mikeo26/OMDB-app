@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2016 at 03:17 PM
+-- Generation Time: May 19, 2016 at 11:58 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -100,25 +100,25 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
 -- Constraints for table `bekeken`
 --
 ALTER TABLE `bekeken`
-  ADD CONSTRAINT `bekeken_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`);
+  ADD CONSTRAINT `bekeken_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `collectie`
 --
 ALTER TABLE `collectie`
-  ADD CONSTRAINT `collectie_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`);
+  ADD CONSTRAINT `collectie_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `watchlist`
 --
 ALTER TABLE `watchlist`
-  ADD CONSTRAINT `watchlist_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`);
+  ADD CONSTRAINT `watchlist_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `wishlist`
 --
 ALTER TABLE `wishlist`
-  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`);
+  ADD CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`gebruikersId`) REFERENCES `gebruikers` (`gebruikersid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
