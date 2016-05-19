@@ -76,7 +76,7 @@ session_start();
 	        <?php } ?>
 	        <li><a href="contact">Contact</a></li>
 	      </ul>
-	      <form method="POST" action="zoeken?zoekterm=&zoekterm"class="navbar-form navbar-right" role="search">
+	      <form method="GET" action="zoeken"class="navbar-form navbar-right" role="search">
 	        <div class="form-group">
 	          	<input type="text" class="form-control" placeholder="Zoeken &hellip;" name="zoekterm" id="zoekveld">
 	        </div>

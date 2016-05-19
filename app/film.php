@@ -34,29 +34,47 @@
 			<small class="movie-genres">Genres: </small><br>
 			<small class="movie-directors">Regiseur: &nbsp;</small><br>
 			<small class="movie-actors">Acteurs: &nbsp;</small><br>
-			<small class="movie-duration">Speelduur: <span class="movie-time"></span> minuten</small><br><br>
-			<small class="movie-mmrating rating">Moviemeter.nl waardering
+			<small class="movie-duration">Speelduur: <span class="movie-time"></span></small><br><br>
+
+
+
+
+
+
+			<a href="#" id="imdb-link" target="_blank" title="IMDb"><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
+			<a href="#" id="moviemeter-link" target="_blank" title="Movie meter"> <img src="assets/img/moviemeter-logo.png" alt="Movie meter logo" class="moviemeter-logo" /></a>
+		</div>
+	</div>
+	
+	<br>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-2">
+						<small class="movie-mmrating rating">Moviemeter.nl waardering
 				<p style="width: 140px !important">
 					<span class="movie-score" style="background-image:url('assets/img/rating.png');height: 14px; display: block">
 					</span>
 				</p>
 			</small>
+		</div>
 
-			<small class="movie-imdb rating">IMDB waardering
+		<div class="col-md-2">
+						<small class="movie-imdb rating">IMDB waardering
 				<p style="width: 140px !important">
 					<span class="movie-imdb-rating" style="background-image:url('assets/img/rating.png'); height: 14px; display: block"></span>
 				</p>
 			</small>
+		</div>
 
-			<small class="movie-metascore rating">Metascore
+		<div class="col-md-2">
+						<small class="movie-metascore rating">Metascore
 				<p style="width: 140px !important">
 					<span class="movie-metascore-rating" style="background-image:url('assets/img/rating.png'); height: 14px; display: block"></span>
 				</p>
 			</small>
-
-			<a href="#" id="imdb-link" target="_blank" title="IMDb"><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
-			<a href="#" id="moviemeter-link" target="_blank" title="Movie meter"> <img src="assets/img/moviemeter-logo.png" alt="Movie meter logo" class="moviemeter-logo" /></a>
 		</div>
+
+		<div class="col-md-2"></div>
 	</div>
 </div>
 
@@ -104,15 +122,20 @@ $.ajax({
 	var z = x.slice(0,-2);
 	$('.movie-actors').replaceWith('<small class="movie-actors">' + z + "</small>");
 
-	$('.movie-time').append(data.duration);
-	
+	if(data.duration !== null){
+		$('.movie-time').append(data.duration + " minuten");
+	} else {
+		$('.movie-time').append(" Niet beschikbaar");
+	}
+
+
 	// movie rating * 20 = with in percentages
 	var rating = data.average * 20;
 	if(rating == 0){
 		$('.movie-score').append('<b>Movie meter rating niet beschikbaar </b> <br><br>')
-							.css("width", '100%')
-							.css('background-image', 'none')
-							.addClass('no-rating');
+						 .css("width", '100%')
+						 .css('background-image', 'none')
+						 .addClass('no-rating');
 	}else{
 		$('.movie-score').css('width', rating+ '%');
 	}
@@ -135,8 +158,15 @@ $.ajax({
 				var imdbRating = omdb.imdbRating * 10;
 				$('.movie-imdb-rating').css('width', imdbRating + '%');
 
-				var metascore = omdb.Metascore;
-				$('.movie-metascore-rating').css('width', metascore + '%');
+				
+				if(omdb.Metascore == "N/A" || omdb.Metascore == undefined){
+					$('.movie-metascore-rating').append("<b>Metascore niet beschikbaar</b>")
+												.css("width", '100%')
+												.css('background-image', 'none')
+												.addClass('no-rating');
+				} else { 
+					$('.movie-metascore-rating').css('width', omdb.Metascore + '%');
+				}
 
 				document.getElementById('imdb-link').setAttribute("href", "http://www.imdb.com/title/" + omdb.imdbID);
 			},

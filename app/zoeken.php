@@ -16,7 +16,7 @@ if(isset($_GET['zoekterm'])){
 					} 
 				?>
 			</p>
-			<p style="display: none;" id="zoekterm"><?php if(isset($zoekterm)){ echo $zoekterm;} ?></p>
+			<p style="display: none;" id="zoekterm"><?php if(isset($zoekterm)){ echo urldecode($zoekterm);} ?></p>
 			<div class="zoekresultaten"><img src="assets/img/loading.gif" alt="Loading..." class="loading"></div>
 		</div>
 	</div>
