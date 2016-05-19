@@ -29,12 +29,22 @@ require 'config.php';
 // 	$stmt->execute();
 // }
 
-	$data = $_SESSION['user'] . "en " . $_REQUEST['movieId'];
+	// $data = $_SESSION['user'] . "en " . $_REQUEST['movieId'];
 
-	$filename = "data.txt";
-	$fh = fopen($filename, 'w') or die("can't open file");
-	fwrite($fh, $data);
-	fclose($fh);
+	// $filename = "data.txt";
+	// $fh = fopen($filename, 'w') or die("can't open file");
+	// fwrite($fh, $data);
+	// fclose($fh);
+
+if(isset($_SESSION['user'])) {
+	$id = $_SESSION['user'];
+	$movieId = $_REQUEST['movieId'];
+
+	$stmt = $db->prepare("INSERT INTO collectie (gebruikersId, filmId) VALUES (4, 83184)");
+	// $stmt->bindParam("id", "3");
+	// $stmt->bindParam("movieid", "31414");
+	$stmt->execute();
+}
 
 
 
