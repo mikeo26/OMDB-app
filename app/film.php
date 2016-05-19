@@ -26,7 +26,7 @@
 
 		<div class="col-sm-6 col-md-8 col-lg-8">
 			<h1 class="movie-title"></h1>
-			<a href="#" id="bekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></a>
+			<a href="#" filmId="<?php echo $movieId; ?>" id="<?php if(isset($_SESSION['user'])) { echo 'addbekeken'; } else { echo 'bekeken'; } ?>"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></a>
 			<a href="#" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></a>
 			<a href="#"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"></a>
 			<a href="#"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></a>
@@ -181,6 +181,27 @@ $.ajax({
 	$('.container').append(errormsg);
 	},
 	timeout: 5000 // set timeout to 5 seconds
+});
+
+//Scripts voor films toevoegen aan persoonlijke lijsten
+$(document).ready(function(){
+	var filmId = $("#addbekeken").attr('filmid');
+	console.log(filmId);
+			var film = {
+			movieId: filmId
+		};
+
+	$("#addbekeken").click(function(){
+
+		$.post(
+			"assets/addBekeken.php",
+			{ movieId: filmId },
+			function() {
+				console.log(this.data);
+			}
+		);
+
+	});
 });
 </script>
 
