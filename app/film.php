@@ -26,10 +26,11 @@
 
 		<div class="col-sm-6 col-md-8 col-lg-8">
 			<h1 class="movie-title"></h1>
-			<a href="#" filmId="<?php echo $movieId; ?>" id="<?php if(isset($_SESSION['user'])) { echo 'addbekeken'; } else { echo 'bekeken'; } ?>"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></a>
-			<a href="#" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></a>
-			<a href="#"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"></a>
-			<a href="#"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></a>
+			<a href="#" data-url="addBekeken" filmId="<?php echo $movieId; ?>" id="addbekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></a>
+			<a href="#" data-url="addCollectie" filmId="<?php echo $movieId; ?>" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></a>
+			<a href="#" data-url="addWishlist" filmId="<?php echo $movieId; ?>"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"></a>
+			<a href="#" data-url="addWatchlist" filmId="<?php echo $movieId; ?>"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></a>
+			<div class="apiResponse"></div>
 			
 			<p class="movie-plot"><br></p>
 			<small class="movie-genres">Genres: </small><br>
@@ -181,24 +182,35 @@ $.ajax({
 
 //Scripts voor films toevoegen aan persoonlijke lijsten
 $(document).ready(function(){
-	var filmId = $("#addbekeken").attr('filmid');
+	
+
+
+
+	$("*[data-url]").click(function(){
+		url = $(this).attr('data-url');
+
+		var filmId = $(this).attr('filmid');
 	console.log(filmId);
 			var film = {
 			movieId: filmId
 		};
-
-	$("#addbekeken").click(function(){
+		console.log(url)
 
 		$.post(
-			"assets/addBekeken.php",
+			"assets/"+url+".php",
 			{ movieId: filmId },
-			function() {
-				console.log(this.data);
-				$(".movie-plot").before("<p style='text-success'><em>Film succesvol toegevoegd aan <abbr>bekeken</abbr> lijst</p>");
+			function(data) {
+				var obj = JSON.parse(data);
+				console.log(data);
+				console.log(obj.message);
+				$(".apiResponse").html(obj.message);
+
 			}
 		);
-
 	});
+
+
+
 });
 </script>
 
