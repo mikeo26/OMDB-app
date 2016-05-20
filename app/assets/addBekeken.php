@@ -40,9 +40,9 @@ if(isset($_SESSION['user'])) {
 	$id = $_SESSION['user'];
 	$movieId = $_REQUEST['movieId'];
 
-	$stmt = $db->prepare("INSERT INTO bekeken (gebruikersId, filmId) VALUES (4, 83184)");
-	// $stmt->bindParam("id", "3");
-	// $stmt->bindParam("movieid", "31414");
+	$stmt = $db->prepare("INSERT INTO bekeken (gebruikersId, filmId) VALUES (:id, :movieid)");
+	$stmt->bindParam("id", "3");
+	$stmt->bindParam("movieid", "31414");
 	$stmt->execute();
 }
 
