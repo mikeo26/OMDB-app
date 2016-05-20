@@ -29,6 +29,7 @@ $('.nav a').filter(function() {
     return this.href == url;
 }).parent().addClass('active');
 $("#registerForm").validate({
+	lang: 'nl',
 	rules: {
 		herhaalwachtwoord: {
 			equalTo: "#wachtwoord"
@@ -37,6 +38,27 @@ $("#registerForm").validate({
 });
 $("#loginForm").validate();
 $("#contactForm").validate();
+$("#changePass").validate({
+	rules: {
+		newpass2: {
+			equalTo: "#newpass1"
+		}
+	}
+});
+	$("#submitNewPass").click(function(){
+		var passData = {
+			newpass1: $("#newpass1"),
+			newpass2: $("#newpass2")
+		}
+		$.post(
+			"changePass.php",
+			passData,
+			function() {
+				console.log(passData);
+			}
+		);
+
+	});
 });
 
 

@@ -12,6 +12,7 @@ session_start();
 	<script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="assets/js/queries.js"></script>
 	<script src="assets/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="assets/js/localization/messages_nl.min.js"></script>
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="assets/css/style.css">

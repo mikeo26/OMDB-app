@@ -23,7 +23,33 @@ if(!isset($_SESSION['user'])) {
 		</div>
 		<div class="row">
 			<div class="col-sm-4 col-md-4 col-lg-4">
-				<h3>edit account</h3>
+				<h3>Account bewerken</h3>
+				<h4>Wijzig wachtwoord</h4>
+				<form id="changePass">
+					<div class="form-group">
+						<label for="newpass1" class="control-label">Nieuw wachtwoord</label>
+						<input type="password" class="form-control" id="newpass1" name="newpass1" required minlength="6"> 
+					</div>
+					<div class="form-group">
+						<label for="newpass2" class="control-label">Nieuw wachtwoord (herhaal)</label>
+						<input type="password" class="form-control" id="newpass2" name="newpass2" required minlength="6"> 
+					</div>
+				</form>
+										<a href="#"><div class="btn btn-primary" id="submitNewPass" name="submitNewPass">Wijzig wachtwoord</div></a>
+				<h4>Wijzig e-mailadres</h4>
+				<form id="changeEmail">
+					<div class="form-group">
+						<label for="email1" class="control-label">Nieuw e-mailadres</label>
+						<input type="text" class="form-control" id="email1" name="email1"> 
+					</div>
+					<div class="form-group">
+						<label for="email2" class="control-label">Nieuw e-mailadres (herhaal)</label>
+						<input type="text" class="form-control" id="email2" name="email2"> 
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" id="submitNewMail" name="submitNewMail" value="Wijzig e-mailadres"> 
+					</div>
+				</form>
 			</div>
 
 			<div class="col-sm-4 col-md-4 col-lg-4">
