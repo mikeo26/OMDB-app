@@ -194,6 +194,7 @@ $(document).ready(function(){
 			{ movieId: filmId },
 			function() {
 				console.log(this.data);
+				$(".movie-plot").before("<p style='text-success'><em>Film succesvol toegevoegd aan <abbr>bekeken</abbr> lijst</p>");
 			}
 		);
 
