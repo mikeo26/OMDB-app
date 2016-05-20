@@ -41,8 +41,8 @@ if(isset($_SESSION['user'])) {
 	$movieId = $_REQUEST['movieId'];
 
 	$stmt = $db->prepare("INSERT INTO bekeken (gebruikersId, filmId) VALUES (:id, :movieid)");
-	$stmt->bindParam("id", "3");
-	$stmt->bindParam("movieid", "31414");
+	$stmt->bindParam("id", $id);
+	$stmt->bindParam("movieid", $movieId);
 	$stmt->execute();
 }
 
