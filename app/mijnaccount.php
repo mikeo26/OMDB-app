@@ -52,36 +52,165 @@ if(!isset($_SESSION['user'])) {
 				</form>
 			</div>
 
-			<div class="col-sm-4 col-md-4 col-lg-4">
-				<h3>Collectie</h3>
-				<ul>
-					<li>Film 1</li>
-					<li>Film 2</li>
-					<li>Film 3</li>
-				</ul>
-				<h3>Bekeken</h3>
-				<ul>
-					<li>Film 1</li>
-					<li>Film 2</li>
-					<li>Film 3</li>
-				</ul>
-			</div>
-
-			<div class="col-sm-4 col-md-4 col-lg-4">
-				<h3>Wishlist</h3>
-				<ul>
-					<li>Film 1</li>
-					<li>Film 2</li>
-					<li>Film 3</li>
-				</ul>
-				<h3>Watchlist</h3>
-				<ul>
-					<li>Film 1</li>
-					<li>Film 2</li>
-					<li>Film 3</li>
-				</ul>
+			<div class="col-sm-8 col-md-8 col-lg-8">
+			<ul class="nav nav-tabs">
+  <li class="active"><a href="#collectie" data-toggle="tab" aria-expanded="true">Collectie</a></li>
+  <li class=""><a href="#bekeken" data-toggle="tab" aria-expanded="false">Bekeken</a></li>
+   <li class=""><a href="#wishlist" data-toggle="tab" aria-expanded="false">Wisthlist</a></li>
+    <li class=""><a href="#watchlist" data-toggle="tab" aria-expanded="false">Watchlist</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="collectie">
+    <h4>Collectie</h4>
+    <ul id="collectieLijst">
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="bekeken">
+   	<h4>Bekeken</h4>
+   	<ul id="bekekenLijst">
+   	</ul>
+  </div>
+  <div class="tab-pane fade" id="wishlist">
+    <h4>Wishlist</h4>
+    <ul id="wishlistLijst">
+    </ul>
+  </div>
+  <div class="tab-pane fade" id="watchlist">
+    <h4>Watchlist</h4>
+    <ul id="watchlistLijst">
+    </ul>
+  </div>
+</div>
 			</div>
 		</div>
 	</div>
+
+<script>
+$(document).ready(function(){
+	// COLLECTIE LIJST
+<?php 
+
+$stmt = $db->prepare("SELECT filmId FROM collectie WHERE gebruikersId = :gebruikersId");
+$stmt->bindParam("gebruikersId", $_SESSION['user']);
+$stmt->execute();
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$collectieArray = array();
+
+foreach($results as $result) {
+	array_push($collectieArray, $result['filmId']);
+}
+
+echo "var myData = " . json_encode($collectieArray);
+?>
+
+	myData.forEach(function(value, key) {
+		$.ajax({
+			dataType: "jsonp",
+			url: 'http://www.moviemeter.nl/api/film/' + value + '&api_key=3d91abb206c948bb7ca0b1b9b57be4aa',
+			type: "GET",
+			cache: true,
+			async: true,
+			success: function(data){
+				$("ul#collectieLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+			},
+		});
+	});
+
+	// BEKEKEN LIJST
+<?php 
+
+$stmt2 = $db->prepare("SELECT filmId FROM bekeken WHERE gebruikersId = :gebruikersId");
+$stmt2->bindParam("gebruikersId", $_SESSION['user']);
+$stmt2->execute();
+$results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+
+$bekekenArray = array();
+
+foreach($results2 as $result2) {
+	array_push($bekekenArray, $result2['filmId']);
+}
+
+echo "var myData2 = " . json_encode($bekekenArray);
+?>
+
+
+	myData2.forEach(function(value, key) {
+		$.ajax({
+			dataType: "jsonp",
+			url: 'http://www.moviemeter.nl/api/film/' + value + '&api_key=3d91abb206c948bb7ca0b1b9b57be4aa',
+			type: "GET",
+			cache: true,
+			async: true,
+			success: function(data){
+				$("ul#bekekenLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+			},
+		});
+	});
+
+	// WISHLIST LIJST
+<?php 
+
+$stmt3 = $db->prepare("SELECT filmId FROM wishlist WHERE gebruikersId = :gebruikersId");
+$stmt3->bindParam("gebruikersId", $_SESSION['user']);
+$stmt3->execute();
+$results3 = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+
+$wishlistArray = array();
+
+foreach($results3 as $result3) {
+	array_push($wishlistArray, $result3['filmId']);
+}
+
+echo "var myData3 = " . json_encode($wishlistArray);
+?>
+
+
+	myData3.forEach(function(value, key) {
+		$.ajax({
+			dataType: "jsonp",
+			url: 'http://www.moviemeter.nl/api/film/' + value + '&api_key=3d91abb206c948bb7ca0b1b9b57be4aa',
+			type: "GET",
+			cache: true,
+			async: true,
+			success: function(data){
+				$("ul#wishlistLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+			},
+		});
+	});
+
+	// WATCHLIST LIJST
+<?php 
+
+$stmt4 = $db->prepare("SELECT filmId FROM watchlist WHERE gebruikersId = :gebruikersId");
+$stmt4->bindParam("gebruikersId", $_SESSION['user']);
+$stmt4->execute();
+$results4 = $stmt4->fetchAll(PDO::FETCH_ASSOC);
+
+$watchlistArray = array();
+
+foreach($results4 as $result4) {
+	array_push($watchlistArray, $result4['filmId']);
+}
+
+echo "var myData4 = " . json_encode($watchlistArray);
+?>
+
+
+	myData4.forEach(function(value, key) {
+		$.ajax({
+			dataType: "jsonp",
+			url: 'http://www.moviemeter.nl/api/film/' + value + '&api_key=3d91abb206c948bb7ca0b1b9b57be4aa',
+			type: "GET",
+			cache: true,
+			async: true,
+			success: function(data){
+				$("ul#watchlistLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+			},
+		});
+	});
+});
+
+</script>
 
 <?php include 'footer.php'; ?>

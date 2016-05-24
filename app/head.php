@@ -17,6 +17,7 @@ session_start();
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/font-awesome-4.6.3/css/font-awesome.min.css">
 </head>
 
 <body>
