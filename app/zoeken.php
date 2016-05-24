@@ -1,6 +1,7 @@
 <?php include('head.php');
 if(isset($_GET['zoekterm'])){
 	$zoekterm = urlencode(str_replace("+", "%20", $_GET['zoekterm']));
+	$zoekterm = trim($zoekterm, " ");
 }
 ?>
 
