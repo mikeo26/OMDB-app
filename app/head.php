@@ -18,6 +18,7 @@ session_start();
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/font-awesome-4.6.3/css/font-awesome.min.css">
+	<script type="text/javascript" src="assets/js/paginate.js"></script>
 </head>
 
 <body>

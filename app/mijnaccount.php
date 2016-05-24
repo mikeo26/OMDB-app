@@ -53,6 +53,7 @@ if(!isset($_SESSION['user'])) {
 			</div>
 
 			<div class="col-sm-8 col-md-8 col-lg-8">
+			<div class="lijsten"></div>
 			<ul class="nav nav-tabs">
   <li class="active"><a href="#collectie" data-toggle="tab" aria-expanded="true">Collectie</a></li>
   <li class=""><a href="#bekeken" data-toggle="tab" aria-expanded="false">Bekeken</a></li>
@@ -112,7 +113,7 @@ echo "var myData = " . json_encode($collectieArray);
 			cache: true,
 			async: true,
 			success: function(data){
-				$("ul#collectieLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+				$("ul#collectieLijst").append("<li><a data-cat='collectie' data-id='" + data.id +"' href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span data-cat='collectie' data-id='"+ data.id +"' title='verwijder' id='remove' style='color:red;cursor:pointer;float:right;' class='remove fa fa-remove'></span></li>");
 			},
 		});
 	});
@@ -143,7 +144,7 @@ echo "var myData2 = " . json_encode($bekekenArray);
 			cache: true,
 			async: true,
 			success: function(data){
-				$("ul#bekekenLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+				$("ul#bekekenLijst").append("<li><a data-cat='bekeken' data-id='" + data.id +"' href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span data-cat='bekeken' data-id='"+ data.id +"' title='verwijder' id='remove' style='color:red;cursor:pointer;float:right;' class='remove fa fa-remove'></span></li>");
 			},
 		});
 	});
@@ -174,7 +175,7 @@ echo "var myData3 = " . json_encode($wishlistArray);
 			cache: true,
 			async: true,
 			success: function(data){
-				$("ul#wishlistLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+				$("ul#wishlistLijst").append("<li><a data-cat='wishlist' data-id='" + data.id +"' href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span data-cat='wishlist' data-id='"+ data.id +"' title='verwijder' id='remove' style='color:red;cursor:pointer;float:right;' class='remove fa fa-remove'></span></li>");
 			},
 		});
 	});
@@ -205,9 +206,31 @@ echo "var myData4 = " . json_encode($watchlistArray);
 			cache: true,
 			async: true,
 			success: function(data){
-				$("ul#watchlistLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span id='remove' style='color:red;cursor:pointer;float:right;' class='fa fa-remove'></span></li>");
+				$("ul#watchlistLijst").append("<li><a href='film?movie-id=" + data.id + "'>" + data.title + "</a> <span data-cat='watchlist' data-id='"+ data.id +"' title='verwijder' style='color:red;cursor:pointer;float:right;' class='remove fa fa-remove'></span></li>");
 			},
 		});
+	});
+
+	// REMOVE FUNCTION
+	$(document).on('click', '.remove', function(){
+		var cat = $(this).attr('data-cat');
+
+		var filmId = $(this).attr('data-id');
+
+		var currentListItem = $(this).parent();
+
+		$.post(
+			"assets/remove.php",
+			{ cat: cat, filmId: filmId  },
+			function(data) {
+				var obj = JSON.parse(data);
+				console.log(data);
+				console.log(obj.message);
+				currentListItem.remove();
+				$(".lijsten").html("<div class='alert alert-dismissible alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>Film status</strong>"+ obj.message +"</div>")
+
+			}
+		);
 	});
 });
 

@@ -18,7 +18,7 @@ if (filename == '') {
 }
 
 $(document).ready(function(){
-	$(document).prop('title', 'Movie database web app | ' + filename)
+	$(document).prop('title', 'Movie database web app | ' + filename);
 });
 
 jQuery(document).ready(function($){
