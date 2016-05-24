@@ -219,6 +219,8 @@ echo "var myData4 = " . json_encode($watchlistArray);
 
 		var currentListItem = $(this).parent();
 
+		var filmName = currentListItem.text();
+
 		$.post(
 			"assets/remove.php",
 			{ cat: cat, filmId: filmId  },
@@ -227,7 +229,7 @@ echo "var myData4 = " . json_encode($watchlistArray);
 				console.log(data);
 				console.log(obj.message);
 				currentListItem.remove();
-				$(".lijsten").html("<div class='alert alert-dismissible alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>Film status</strong>"+ obj.message +"</div>")
+				$(".lijsten").html("<div class='alert alert-dismissible alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>" + filmName + "</strong>"+ obj.message +"</div>")
 
 			}
 		);
