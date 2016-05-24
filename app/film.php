@@ -26,10 +26,10 @@
 
 		<div class="col-sm-6 col-md-8 col-lg-8">
 			<h1 class="movie-title"></h1>
-			<a href="#" data-url="addBekeken" filmId="<?php echo $movieId; ?>" id="addbekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></a>
-			<a href="#" data-url="addCollectie" filmId="<?php echo $movieId; ?>" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></a>
-			<a href="#" data-url="addWishlist" filmId="<?php echo $movieId; ?>"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"></a>
-			<a href="#" data-url="addWatchlist" filmId="<?php echo $movieId; ?>"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></a>
+			<span data-url="addBekeken" filmId="<?php echo $movieId; ?>" id="addbekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/></span>
+			<span data-url="addCollectie" filmId="<?php echo $movieId; ?>" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"></span>
+			<span data-url="addWishlist" filmId="<?php echo $movieId; ?>"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"></span>
+			<span data-url="addWatchlist" filmId="<?php echo $movieId; ?>"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"></span>
 			<div class="apiResponse"></div>
 			
 			<p class="movie-plot"><br></p>
