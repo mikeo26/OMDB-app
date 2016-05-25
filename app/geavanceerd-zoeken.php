@@ -5,7 +5,12 @@ if(isset($_GET['zoekterm'])){
 }
 ?>
 
-<div class="container zoeken">	
+<div class="container zoeken">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Zoeken</h1>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			<p class="zoekopdracht">Zoekterm:
@@ -33,8 +38,9 @@ if(isset($_GET['zoekterm'])){
 				  	</div>
 
 				  	<div class="form-group">
-				  		<label for="jaar" class="jaar pull-left">Jaar</label>
-						<div class="col-md-2">
+				  		
+						<div class="col-md-3">
+							<label for="jaar">Jaartal van</label>
 							<select name="jaar-van" id="jaar" class="form-control">
 					  			<option value="">Van</option>
 					  			<option value="2013">2013</option>
@@ -42,23 +48,24 @@ if(isset($_GET['zoekterm'])){
 					  		</select>
 						</div>
 
-						<div class="col-md-2">
-					  		<select name="jaar-tot" class="form-control">
+						<div class="col-md-3">
+							<label for="jaar-tot">Jaar tot</label>
+					  		<select name="jaar-tot" id="jaar-tot" class="form-control">
 					  			<option value="">Tot</option>
 					  			<option value="2015">2015</option>
 					  			<option value="2016">2016</option>
 					  		</select>
 					  	</div>
 
+						<div class="col-md-3">
 						<label for="acteur">Acteur</label>
-						<div class="col-md-2">
 							<input type="text" class="form-control pull-right" id="acteur" placeholder="search" />
 						</div>
 				  	</div>
 
 				  	<div class="form-group">
+				  		<div class="col-md-6">
 				  		<label for="categorie">Categorie</label>
-				  		<div class="col-md-2">
 					  		<select name="categorie" id="categorie" class="form-control">
 					  			<option value="">Categorie</option>
 					  			<option value="horror">Horror</option>
@@ -69,26 +76,35 @@ if(isset($_GET['zoekterm'])){
 					  		</select>
 					  	</div>
 
-				  		<label for="regisseur">Regisseur</label>
-				    	<input type="text" class="form-control" id="regisseur" placeholder="search">
-				  	</div><br><br>
-
-				  	<div class="form-group">
-				  		<label for="speelduur">Speelduur</label>
-				  		<select name="speelduur" id="speelduur" class="form-control">
-				  			<option value="">Opties</option>
-				  		</select>
+						<div class="col-md-6">
+							<label for="regisseur">Regisseur</label>
+				    		<input type="text" class="form-control" id="regisseur" placeholder="search">
+						</div>
 				  	</div>
 
-				  	<button type="submit" class="btn btn-primary pull-right">Zoeken!</button>
-				  	<br><br>
-			  	<fieldset>
+				  	<div class="form-group">
+				  		<div class="col-md-6">
+				  			<label for="speelduur">Speelduur</label>
+					  		<select name="speelduur" id="speelduur" class="form-control">
+					  			<option value="">Opties</option>
+					  		</select>
+				  		</div>
+				  	</div>
+					
+					<div class="form-group">
+						<div class="col-md-6">
+							<button type="submit" class="btn btn-primary pull-right">Zoeken!</button>
+						</div>
+					</div>
+			  	</fieldset>
 			</form>
 		</div>
 	</div>
 
   	<div class="row">
 	    <div class="zoekresultaten">
+	    	<h3>Zoekresultaten</h3>
+	    	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero numquam repellendus non voluptate. Harum blanditiis ullam deleniti, repudiandae fugiat molestias fuga recusandae maiores iure dolores porro modi veritatis. Quod, necessitatibus.</p>
 	      	<img src="assets/img/loading.gif" alt="Loading..." class="loading">
 	    </div>
 	</div>
