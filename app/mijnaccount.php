@@ -19,40 +19,46 @@ if(!isset($_SESSION['user'])) {
 
 			?>
 				<h1>Mijn account</h1>
+				<div class="statusMessage"></div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4 col-md-4 col-lg-4">
-				<h3>Account bewerken</h3>
-				<h4>Wijzig wachtwoord</h4>
+				<h2>Account bewerken</h2>
+				<h3>Wijzig wachtwoord</h3>
 				<form id="changePass">
 					<div class="form-group">
 						<label for="newpass1" class="control-label">Nieuw wachtwoord</label>
 						<input type="password" class="form-control" id="newpass1" name="newpass1" required minlength="6"> 
+						<div id="newpass1Error"></div>
 					</div>
 					<div class="form-group">
 						<label for="newpass2" class="control-label">Nieuw wachtwoord (herhaal)</label>
 						<input type="password" class="form-control" id="newpass2" name="newpass2" required minlength="6"> 
+						<div id="newpass2Error"></div>
 					</div>
+
 				</form>
-										<a href="#"><div class="btn btn-primary" id="submitNewPass" name="submitNewPass">Wijzig wachtwoord</div></a>
-				<h4>Wijzig e-mailadres</h4>
+					<button class="btn btn-primary" id="submitNewPass" name="submitNewPass">Wijzig wachtwoord</button> 
+
+				<h3>Wijzig e-mailadres</h3>
 				<form id="changeEmail">
 					<div class="form-group">
 						<label for="email1" class="control-label">Nieuw e-mailadres</label>
-						<input type="text" class="form-control" id="email1" name="email1"> 
+						<input type="text" class="form-control" id="email1" name="email1">
+						<div id="newmail1Error"></div> 
 					</div>
 					<div class="form-group">
 						<label for="email2" class="control-label">Nieuw e-mailadres (herhaal)</label>
 						<input type="text" class="form-control" id="email2" name="email2"> 
-					</div>
-					<div class="form-group">
-						<input type="submit" class="btn btn-primary" id="submitNewMail" name="submitNewMail" value="Wijzig e-mailadres"> 
+						<div id="newmail2Error"></div> 
 					</div>
 				</form>
+					<button class="btn btn-primary" id="submitNewMail" name="submitNewMail">Wijzig e-mailadres</button> 
 			</div>
 
 			<div class="col-sm-8 col-md-8 col-lg-8">
+			<h2>Persoonlijke lijsten</h2>
 			<div class="lijsten"></div>
 			<ul class="nav nav-tabs">
   <li class="active"><a href="#collectie" data-toggle="tab" aria-expanded="true">Collectie</a></li>
@@ -226,8 +232,6 @@ echo "var myData4 = " . json_encode($watchlistArray);
 			{ cat: cat, filmId: filmId  },
 			function(data) {
 				var obj = JSON.parse(data);
-				console.log(data);
-				console.log(obj.message);
 				currentListItem.remove();
 				$(".lijsten").html("<div class='alert alert-dismissible alert-success'><button type='button' class='close' data-dismiss='alert'>&times;</button> <strong>" + filmName + "</strong>"+ obj.message +"</div>")
 
