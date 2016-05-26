@@ -99,7 +99,6 @@ if(isset($_GET['zoekterm'])){
   	<div class="row">
 	    <div class="zoekresultaten col-md-12">
 	    	<h3>Zoekresultaten</h3>
-	      	<img src="assets/img/loading.gif" alt="Loading..." class="loading">
 	    </div>
 	</div>
 	<div class="row">
@@ -144,8 +143,13 @@ function zoeken(){
 	        		id: data[i].id,
 	        		title: data[i].title,
 	        		year: data[i].year,
-	        		poster: ''
-	        	}
+	        		poster: '',
+	        		actors: data[i].actors,
+	        		directors: data[i].directors
+	        }
+
+	        // console.log(filmdata.actors);
+	        // console.log(filmdata);
 
 	        moviemeterCall(filmdata.id, data[i]);
 			}
@@ -153,7 +157,6 @@ function zoeken(){
 	},
 	error: function(data){
 	    $('#zoekresultaten').append(errormsg);
-	    $('.loading').hide();
 	  },
 	  timeout: 5000 // set timeout to 5 seconds
 	}); // ajax request end
@@ -167,6 +170,7 @@ function zoeken(){
 		    async: true,
 		    success: function(details){
 		    	omdbCall(details.imdb, mm);
+		    	console.log(details.actors[0].name);
 		    }
 		});
 	}
@@ -182,14 +186,40 @@ function zoeken(){
 
 		    	if( omdb.Poster == undefined || omdb.Poster == "N/A"){
 		    		var poster = "assets/img/no-poster.jpg";
-		    		$('.loading').hide();
 		    	} else {
 		    		var poster = omdb.Poster;
 		    	}
 
-		    	var titel = mm.title;
-				var titel = titel.slice(0, 40);
-				$('#zoekresultaten').append("<div class='movie col-sm-2 col-md-2 col-lg-2' id='movie-id-" + mm.id + "'><a href='film?movie-id=" + mm.id + "'><p class='film-titel'>"+ titel +" (" + mm.year + ") </p></a> <br><a href='film?movie-id=" + mm.id + "'><img src='" + poster + "' alt='Oops! Er ging iets mis met het laden van de filmposter...' style='width: 100%' class='film-poster'/></a>");
+		 		var title = mm.title;
+				var title = title.slice(0, 40);
+
+		    	filmdata = {
+		    		id: mm.id,
+		    		title: title,
+		    		year: mm.year,
+		    		poster: poster,
+		    		actors: mm.actors
+		    	}
+
+
+		    	if(jaarVan && filmdata.year < jaarVan || jaarTot && filmdata.year > jaarTot){
+					delete filmdata.year;
+				}
+
+				var test = filmdata.actors;
+				// if( test.search('leo')){
+				// 	console.log('test');
+				// }
+
+				// console.log(filmdata);
+
+				if(filmdata.year == undefined || filmdata.year == undefined){
+					delete filmdata;
+				}
+
+
+				$('#zoekresultaten').append("<div class='movie col-sm-2 col-md-2 col-lg-2' id='movie-id-" + filmdata.id + "'><a href='film?movie-id=" + filmdata.id + "'><p class='film-titel'>"+ filmdata.title +" (" + filmdata.year + ") </p></a> <br><a href='film?movie-id=" + filmdata.id + "'><img src='" + filmdata.poster + "' alt='Oops! Er ging iets mis met het laden van de filmposter...' style='width: 100%' class='film-poster'/></a>");
+
 			}
 		});
 	}
