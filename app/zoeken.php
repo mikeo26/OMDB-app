@@ -14,12 +14,18 @@ if(isset($_GET['zoekterm'])){
 
 	<div class="row">
 		<div class="col-md-12">
-			<form action="#" class="form-horizontal">
+			<form action="#" class="form-horizontal" id="form-zoeken">
 				<fieldset>
 				  	<div class="form-group">
-				    	<label class="sr-only" for="titel">Titel</label>
-				    	<div class="col-sm-12">
-				    		<input type="text" class="form-control" id="titel" placeholder="search">
+				    	
+				    	<div class="col-sm-12" id="title-wrapper">
+				    		<label class="sr-only" for="titel">Titel</label>
+				    		<input type="text" class="form-control" id="titel" placeholder="search" required>
+				    		<div class="title-help-block help-block with-errors" style="display: none">
+				    			<ul class="list-unstyled">
+				    				<li>Vul dit veld in.</li>
+				    			</ul>
+				    		</div>
 				    	</div>
 				  	</div>
 
@@ -88,11 +94,13 @@ if(isset($_GET['zoekterm'])){
 					  		</select>
 				  		</div>
 				  	</div>
+
+				  	<div class="col-md-12">
+						<button type="button" class="btn btn-primary pull-right" onClick=zoeken();>Zoeken!</button>
+					</div>
 			  	</fieldset>
 			</form>
-			<div class="col-md-12">
-				<button type="submit" class="btn btn-primary pull-right" onClick=zoeken();>Zoeken!</button>
-			</div>
+
 		</div>
 	</div>
 
@@ -111,6 +119,7 @@ if(isset($_GET['zoekterm'])){
 
 <script>
 var errormsg = '<p class="errormsg reload" onClick="window.location.reload()" style="cursor: pointer;">Geen zoekresultaten om weer te geven. Controleer op spel en typfouten en probeer het opnieuw.</p>';
+var filmdata;
 
 function zoeken(){
 	var myNode = document.getElementById("zoekresultaten");
@@ -120,6 +129,11 @@ function zoeken(){
 	}	
 
 	var titel = document.getElementById("titel").value;
+
+	if(titel == ""){
+		$('#title-wrapper').addClass('has-error has-danger');
+		$('.title-help-block').css('display', 'block');
+	}
 	var jaarVan = document.getElementById("jaar-van").value;
 	var jaarTot = document.getElementById("jaar-tot").value;
 	var acteur = document.getElementById("acteur").value;
@@ -138,20 +152,18 @@ function zoeken(){
 		// Haal 50 films op
 		for(i=0; i < 50; i++){
 	    
-	    	if (data[i].id !== undefined || data[i].id !== ''){
+	    	if (data.id !== undefined || data.id !== ''){
+
 	        	filmdata = {
 	        		id: data[i].id,
-	        		title: data[i].title,
-	        		year: data[i].year,
-	        		poster: '',
-	        		actors: data[i].actors,
-	        		directors: data[i].directors
-	        }
 
-	        // console.log(filmdata.actors);
-	        // console.log(filmdata);
+	        	}
 
-	        moviemeterCall(filmdata.id, data[i]);
+	        	filmdata.title = data[i].title;
+	        	filmdata.year = data[i].year;
+	        	filmdata.poster = "";
+
+	        moviemeterCall( data[i]);
 			}
 		} // for loop end
 	},
@@ -161,16 +173,20 @@ function zoeken(){
 	  timeout: 5000 // set timeout to 5 seconds
 	}); // ajax request end
 
-	function moviemeterCall(id, mm){
+	function moviemeterCall(mm){
 		$.ajax({
 		    dataType: "jsonp",
-		    url: 'http://www.moviemeter.nl/api/film/' + id + '&api_key=3d91abb206c948bb7ca0b1b9b57be4aa',
+		    url: 'http://www.moviemeter.nl/api/film/' + filmdata.id + '&api_key=3d91abb206c948bb7ca0b1b9b57be4aa',
 		    type: "GET",
 		    cache: false,
 		    async: true,
 		    success: function(details){
 		    	omdbCall(details.imdb, mm);
-		    	console.log(details.actors[0].name);
+		    	filmdata.genres = details.genres;
+		    	filmdata.actors = details.actors.name;
+		    	filmdata.directors = details.directors;
+
+	        	console.log(details);
 		    }
 		});
 	}
@@ -198,28 +214,19 @@ function zoeken(){
 		    		title: title,
 		    		year: mm.year,
 		    		poster: poster,
-		    		actors: mm.actors
+		    		actors: mm.actors,
+		    		genre: mm.genre
 		    	}
-
 
 		    	if(jaarVan && filmdata.year < jaarVan || jaarTot && filmdata.year > jaarTot){
 					delete filmdata.year;
 				}
 
-				var test = filmdata.actors;
-				// if( test.search('leo')){
-				// 	console.log('test');
-				// }
-
-				// console.log(filmdata);
-
 				if(filmdata.year == undefined || filmdata.year == undefined){
 					delete filmdata;
 				}
 
-
 				$('#zoekresultaten').append("<div class='movie col-sm-2 col-md-2 col-lg-2' id='movie-id-" + filmdata.id + "'><a href='film?movie-id=" + filmdata.id + "'><p class='film-titel'>"+ filmdata.title +" (" + filmdata.year + ") </p></a> <br><a href='film?movie-id=" + filmdata.id + "'><img src='" + filmdata.poster + "' alt='Oops! Er ging iets mis met het laden van de filmposter...' style='width: 100%' class='film-poster'/></a>");
-
 			}
 		});
 	}

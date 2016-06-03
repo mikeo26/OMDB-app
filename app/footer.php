@@ -55,6 +55,12 @@ $("#wachtwoordform").validate({
 	}
 });
 
+$("#form-zoeken").validate({
+	rules: {
+		
+	}
+});
+
 	// CHANGE PASSWORD
 
 	$("#submitNewPass").click(function(){
