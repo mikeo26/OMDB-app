@@ -22,24 +22,21 @@ if(isset($_POST['register'])) {
 	if($checkGebruikers > 0) {
 		$_SESSION['errors']['1'] = "Er is al een gebruikers met deze gebruikersnaam geregistreerd.";
 		header("location: ../registreren");
-	}
-	if($checkEmail > 0) {
+	}elseif($checkEmail > 0) {
 		$_SESSION['errors']['2'] = "Er is al een gebruiker met dit e-mailadres geregistreerd.";
 		header("location: ../registreren");
-	}
-	if($wachtwoord !== $wachtwoord2) {
+	}elseif($wachtwoord !== $wachtwoord2) {
 		$_SESSION['errors']['3'] = "De 2 wachtwoorden komen niet overeen";
 		header("location: ../registreren");
-	}
-
-	$options 	= 	['cost' => 11, 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)];
-	$hashedPass = 	password_hash($wachtwoord, PASSWORD_BCRYPT, $options);
-	$query		=	$db->prepare("INSERT INTO gebruikers (gebruikersrol, emailadres, gebruikersnaam, wachtwoord, verificatiecode) VALUES (0, :email, :gebruikersnaam, :wachtwoord, :verificatiecode)");
-		
-	$query		->	bindParam("email", $email, PDO::PARAM_STR);
-	$query		->	bindParam("gebruikersnaam", $gebruikersnaam, PDO::PARAM_STR);
-	$query		->	bindParam("wachtwoord", $hashedPass, PDO::PARAM_STR);
-	$query		->	bindParam("verificatiecode", $verificatiecode, PDO::PARAM_STR);
+	}else {
+		$options 	= 	['cost' => 11, 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)];
+		$hashedPass = 	password_hash($wachtwoord, PASSWORD_BCRYPT, $options);
+		$query		=	$db->prepare("INSERT INTO gebruikers (gebruikersrol, emailadres, gebruikersnaam, wachtwoord, verificatiecode) VALUES (0, :email, :gebruikersnaam, :wachtwoord, :verificatiecode)");
+			
+		$query		->	bindParam("email", $email, PDO::PARAM_STR);
+		$query		->	bindParam("gebruikersnaam", $gebruikersnaam, PDO::PARAM_STR);
+		$query		->	bindParam("wachtwoord", $hashedPass, PDO::PARAM_STR);
+		$query		->	bindParam("verificatiecode", $verificatiecode, PDO::PARAM_STR);
 	
 	if($query->execute()) {
 		$to 		= 	$email;
@@ -59,4 +56,7 @@ if(isset($_POST['register'])) {
         	header("location: /index.php");
         }
 	}
+	}
+
+
 }

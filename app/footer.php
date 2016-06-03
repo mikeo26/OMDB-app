@@ -46,6 +46,15 @@ $("#changePass").validate({
 	}
 });
 
+$("#wachtwoordform").validate({
+	rules: {
+		emailadres: {
+			required: true,
+			email: true
+		}
+	}
+});
+
 	// CHANGE PASSWORD
 
 	$("#submitNewPass").click(function(){

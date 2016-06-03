@@ -17,5 +17,9 @@ if(isset($_POST['inloggen'])) {
 		session_start();
 		$_SESSION['user'] = $user->gebruikersid;
 		header("location: ../mijnaccount?msg=ingelogd");
-	} 
+	}else {
+		session_start();
+		$_SESSION['message'] = "<p class='text-danger'>De ingevulde gegevens zijn onjuist</p>";
+		header("location: ../inloggen");
+	}
 }

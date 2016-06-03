@@ -24,6 +24,12 @@ if(isset($_SESSION['user'])) {
 			?>
 				<h2>Inloggen</h2>
 				<p>U kunt door middel van het onderstaande formulier inloggen in uw account.</p>
+				<?php
+
+				if(isset($_SESSION['message'])) {
+					echo $_SESSION['message'];
+				}
+				?>
 					<form class="form-horizontal" method="POST" action="assets/login.php" id="loginForm">
 					  <fieldset>
 					    <legend>Formulier</legend>
@@ -41,7 +47,7 @@ if(isset($_SESSION['user'])) {
 					    </div>
 					    <div class="form-group">
 					      <div class="col-lg-10 col-lg-offset-2">
-					        <button type="submit" name="inloggen" class="btn btn-primary">Inloggen</button>
+					        <button type="submit" name="inloggen" class="btn btn-primary">Inloggen</button> <a class="btn btn-primary" href="wachtwoordvergeten">Wachtwoord vergeten?</a>
 					      </div>
 					    </div>
 					  </fieldset>
