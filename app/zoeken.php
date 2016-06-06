@@ -68,11 +68,21 @@ if(isset($_GET['zoekterm'])){
 				  		<label for="categorie">Categorie</label>
 					  		<select name="categorie" id="categorie" class="form-control">
 					  			<option value="">-- Maak een keuze --</option>
-					  			<option value="horror">Horror</option>
-					  			<option value="sci-fi">Sciencefiction</option>
-					  			<option value="thriller">Thriller</option>
-					  			<option value="drama">Drama</option>
-					  			<option value="animatie">Animatie</option>
+					  			<option value="Horror">Horror</option>
+					  			<option value="Sciencefiction">Sciencefiction</option>
+					  			<option value="Thriller">Thriller</option>
+					  			<option value="Drama">Drama</option>
+					  			<option value="Animatie">Animatie</option>
+					  			<option value="Komedie">Komedie</option>
+					  			<option value="Familie">Familie</option>
+					  			<option value="Oorlog">Oorlog</option>
+					  			<option value="Misdaad">Misdaad</option>
+					  			<option value="Western">Western</option>
+					  			<option value="Documentaire">Documentaire</option>
+					  			<option value="Mystery">Mystery</option>
+					  			<option value="Erotiek">Erotiek</option>
+					  			<option value="Fantasy">Fantasy</option>
+					  			<option value="Avontuur">Avontuur</option>
 					  		</select>
 					  	</div>
 
@@ -137,7 +147,7 @@ function zoeken(){
 	var jaarVan = document.getElementById("jaar-van").value;
 	var jaarTot = document.getElementById("jaar-tot").value;
 	var acteur = document.getElementById("acteur").value;
-	var categorie =  document.getElementById("categorie").value;
+	var genre =  document.getElementById("categorie").value;
 	var regisseur = document.getElementById("regisseur").value;
 	var speelduur = document.getElementById("speelduur").value;
 
@@ -150,13 +160,12 @@ function zoeken(){
 	success: function(data){
 
 		// Haal 50 films op
-		for(i=0; i < 50; i++){
+		for(i=0; i < 54; i++){
 	    
 	    	if (data.id !== undefined || data.id !== ''){
 
 	        	filmdata = {
 	        		id: data[i].id,
-
 	        	}
 
 	        	filmdata.title = data[i].title;
@@ -181,12 +190,14 @@ function zoeken(){
 		    cache: false,
 		    async: true,
 		    success: function(details){
-		    	omdbCall(details.imdb, mm);
-		    	filmdata.genres = details.genres;
-		    	filmdata.actors = details.actors.name;
-		    	filmdata.directors = details.directors;
 
-	        	console.log(details);
+		    	if(jQuery.inArray( genre, details.genres ) >= 0 || genre == ""){
+		    		omdbCall(details.imdb, mm);
+			    	mm.genres = details.genres;
+			    	mm.actors = details.actors.name;
+			    	mm.directors = details.directors;
+			    	delete filmdata;
+		    	}
 		    }
 		});
 	}
@@ -215,18 +226,12 @@ function zoeken(){
 		    		year: mm.year,
 		    		poster: poster,
 		    		actors: mm.actors,
-		    		genre: mm.genre
+		    		genres: mm.genres
 		    	}
 
-		    	if(jaarVan && filmdata.year < jaarVan || jaarTot && filmdata.year > jaarTot){
-					delete filmdata.year;
+				if(filmdata.year >= jaarVan && filmdata.year <= jaarTot || jaarVan === '' || jaarTot === ''){
+					$('#zoekresultaten').append("<div class='movie col-sm-2 col-md-2 col-lg-2' id='movie-id-" + filmdata.id + "'><a href='film?movie-id=" + filmdata.id + "'><p class='film-titel'>"+ filmdata.title +" (" + filmdata.year + ") </p></a> <br><a href='film?movie-id=" + filmdata.id + "'><img src='" + filmdata.poster + "' alt='Oops! Er ging iets mis met het laden van de filmposter...' style='width: 100%' class='film-poster'/></a>");
 				}
-
-				if(filmdata.year == undefined || filmdata.year == undefined){
-					delete filmdata;
-				}
-
-				$('#zoekresultaten').append("<div class='movie col-sm-2 col-md-2 col-lg-2' id='movie-id-" + filmdata.id + "'><a href='film?movie-id=" + filmdata.id + "'><p class='film-titel'>"+ filmdata.title +" (" + filmdata.year + ") </p></a> <br><a href='film?movie-id=" + filmdata.id + "'><img src='" + filmdata.poster + "' alt='Oops! Er ging iets mis met het laden van de filmposter...' style='width: 100%' class='film-poster'/></a>");
 			}
 		});
 	}
