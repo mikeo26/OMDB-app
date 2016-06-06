@@ -126,6 +126,14 @@
     .movie-poster{
         max-width: default;
     }
+    .films {
+    max-height:250px;
+    min-height:250px;
+    width:100%!important;
+    float: left;
+    margin-bottom: 5%;
+    margin-left:2%;
+}
 
     .zoekresultaten .movie,
     #zoekresultaten .movie{
@@ -150,4 +158,20 @@
         display: block;
         margin: 0 auto;
     }
+}
+
+.films img {
+    max-width: 30%;
+    float: left;
+    margin-bottom: 10%;
+    margin-right: 2%;
+    max-height: 250px;
+}
+
+.films {
+    max-height:250px;
+    min-height:250px;
+    width:50%;
+    float: left;
+    margin-bottom: 5%;
 }
