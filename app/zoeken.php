@@ -143,6 +143,9 @@ function zoeken(){
 	if(titel == ""){
 		$('#title-wrapper').addClass('has-error has-danger');
 		$('.title-help-block').css('display', 'block');
+	} else {
+		$('#title-wrapper').removeClass('has-error has-danger');
+		$('.title-help-block').css('display', 'none');
 	}
 	var jaarVan = document.getElementById("jaar-van").value;
 	var jaarTot = document.getElementById("jaar-tot").value;
