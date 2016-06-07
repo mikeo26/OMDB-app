@@ -175,3 +175,16 @@
     float: left;
     margin-bottom: 5%;
 }
+
+#collectie {
+    cursor:pointer;
+}
+#wishlist {
+    cursor:pointer;
+}
+#watchlist {
+    cursor:pointer;
+}
+#addbekeken {
+    cursor:pointer;
+}

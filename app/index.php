@@ -2,6 +2,7 @@
 	
 	<div class="container">
 		<div class="row">
+			<?php if(isset($_SESSION['registered'])) { echo "<p class='text-success'>" . $_SESSION['registered'] . "</p>"; unset($_SESSION['registered']);} ?>
 
 		</div>
 		<div class="row">
