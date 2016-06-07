@@ -117,6 +117,7 @@ if(isset($_GET['zoekterm'])){
   	<div class="row">
 	    <div class="zoekresultaten col-md-12">
 	    	<h3>Zoekresultaten</h3>
+	    	<?php include 'assets/no-javascript.php'; ?>
 	    </div>
 	</div>
 	<div class="row">

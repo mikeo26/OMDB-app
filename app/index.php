@@ -23,7 +23,7 @@
 					<br>
 					<p> Aanbevolen films aan het laden...</p>
 				</div>
-				<div id="aanbevolenFilmContent" class="aanbevolen-films"></div>
+				<div id="aanbevolenFilmContent" class="aanbevolen-films"> <?php include 'assets/no-javascript.php'; ?></div>
 			</div>
 		</div>
 	</div>

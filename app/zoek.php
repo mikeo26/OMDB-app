@@ -18,6 +18,7 @@ if(isset($_GET['zoekterm'])){
 				?>
 			</p>
 			<p style="display: none;" id="zoekterm"><?php if(isset($zoekterm)){ echo urldecode($zoekterm);} ?></p>
+			<?php include 'assets/no-javascript.php'; ?>
 		</div>
 	</div>
 
