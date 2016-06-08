@@ -7,13 +7,8 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-8 col-md-8 col-lg-8">
-				<h2>Example body text</h2>
-				<p>Nullam quis risus eget <a href="#">urna mollis ornare</a> vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-				<p><small>This line of text is meant to be treated as fine print.</small></p>
-				<p>The following snippet of text is <strong>rendered as bold text</strong>.</p>
-				<p>The following snippet of text is <em>rendered as italicized text</em>.</p>
-				<p>An abbreviation of the word attribute is <abbr title="attribute">attr</abbr>.</p>
-				<p>Hier kan je het hele nieuwsoverzicht in zetten</p>
+				<h2>Movie Database Web App</h2>
+				<p>Op deze website kun je je eigen gebruikersaccount aanmaken om je persoonlijke films collectie, bekeken, watchlist en wishlist bij te houden.</p>
 			</div>
 
 			<div class="col-sm-4 col-md-4 col-lg-4">

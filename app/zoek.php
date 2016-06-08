@@ -8,11 +8,12 @@ if(isset($_GET['zoekterm'])){
 <div class="container zoeken">	
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
+			<h1>Zoek</h1>
 			<p class="zoekopdracht">Zoekterm:
 				<?php
 					if(isset($zoekterm)){
 						echo urldecode($zoekterm);
-					}else{
+					} else {
 						echo 'Geen zoekterm opgegeven';
 					} 
 				?>
