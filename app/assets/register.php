@@ -28,6 +28,9 @@ if(isset($_POST['register'])) {
 	}elseif($wachtwoord !== $wachtwoord2) {
 		$_SESSION['errors']['3'] = "De 2 wachtwoorden komen niet overeen";
 		header("location: ../registreren");
+	}elseif(!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+		$_SESSION['errors']['4'] = "Het door u ingevulde e-mailadres is geen geldig e-mailadres";
+		header("location: ../registreren");
 	}else {
 		$options 	= 	['cost' => 11, 'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)];
 		$hashedPass = 	password_hash($wachtwoord, PASSWORD_BCRYPT, $options);
