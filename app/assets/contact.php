@@ -18,8 +18,14 @@ if(isset($_POST['sendcontact'])) {
     $from 		= "info@mdwa.nl";
     $headers 	= "From: $from";
 
+    // session_start();
+    // $_SESSION['contact'] = "<p class='text-success'>Uw contactaanvraag is succesvol verzonden. Wij zullen zo spoedig mogelijk contact met u opnemen.</p>";
+    // header("location: ../contact");
+
 	if(mail($to, $subject, $message, $headers)) {
-		header("location: contact?succes");
+	    session_start();
+	    $_SESSION['contact'] = "<p class='text-success'>Uw contactaanvraag is succesvol verzonden. Wij zullen zo spoedig mogelijk contact met u opnemen.</p>";
+	    header("location: ../contact");
 	}
 
 	// if(!empty($naam)) {

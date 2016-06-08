@@ -20,6 +20,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-8 col-md-8 col-lg-8">
+			<?php if(isset($_SESSION['contact'])) { echo $_SESSION['contact']; unset($_SESSION['contact']); } ?>
 				<h2>Contactformulier</h2>
 					<form class="form-horizontal" method="POST" action="assets/contact.php" id="contactForm">
 					  <fieldset>
@@ -54,6 +55,7 @@
 					    </div>
 					  </fieldset>
 					</form>
+			
 			</div>
 
 			<div class="col-sm-4 col-md-4 col-lg-4">
