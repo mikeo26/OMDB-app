@@ -1,4 +1,0 @@
-Gebruiksvriendelijk: "Deze film is succesvol verwijdert"
-Laten zien dat je web app gebruiksvriendelijk is.
-Knoppen makkelijk en duidelijk te vinden, fout en succesvol meldingen duidelijk.
-Leesbaarheid van tekst op de web app, niet te grootte of te kleine afbeeldingen en/of teksten etc.
