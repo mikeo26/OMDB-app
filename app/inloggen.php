@@ -35,19 +35,19 @@ if(isset($_SESSION['user'])) {
 					    <legend>Formulier</legend>
 					    <div class="form-group">
 					      <label for="gebruikersnaam" class="col-lg-2 control-label">Gebruikersnaam</label>
-					      <div class="col-lg-10">
+					      <div class="col-lg-4">
 					        <input type="text" class="form-control" id="gebruikersnaam" placeholder="Gebruikersnaam" name="gebruikersnaam" minlength="3" required>
 					      </div>
 					    </div>
 					    <div class="form-group">
 					      <label for="wachtwoord" class="col-lg-2 control-label">Wachtwoord</label>
-					      <div class="col-lg-10">
+					      <div class="col-lg-4">
 					        <input type="password" class="form-control" id="wachtwoord" placeholder="Wachtwoord" name="wachtwoord" required>
 					      </div>
 					    </div>
 					    <div class="form-group">
-					      <div class="col-lg-10 col-lg-offset-2">
-					        <button type="submit" name="inloggen" class="btn btn-primary">Inloggen</button> <a class="btn btn-primary" href="wachtwoordvergeten">Wachtwoord vergeten?</a>
+					      <div class="col-lg-4 col-lg-offset-2">
+					        <button type="submit" name="inloggen" class="btn btn-primary">Inloggen</button> <a class="btn btn-primary pull-right" href="wachtwoordvergeten">Wachtwoord vergeten?</a>
 					      </div>
 					    </div>
 					  </fieldset>

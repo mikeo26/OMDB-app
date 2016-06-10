@@ -81,14 +81,16 @@
 			<small class="movie-actors">Acteurs: &nbsp;</small><br>
 			<small class="movie-duration">Speelduur: <span class="movie-time"></span></small><br><br>
 
-			<a href="#" id="imdb-link" target="_blank" title="IMDb"><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
-			<a href="#" id="moviemeter-link" target="_blank" title="Movie meter"> <img src="assets/img/moviemeter-logo.png" alt="Movie meter logo" class="moviemeter-logo" /></a>
 		</div>
 	</div>
 	
 	<br>
 	<div class="row">
-		<div class="col-md-4"></div>
+	<div class="col-md-4"></div>
+		<div class="col-md-2">
+			<a href="#" id="imdb-link" target="_blank" title="IMDb"><img src="assets/img/imdb-logo.png" alt="IMDB logo" class="imdb-logo"></a>
+			<a href="#" id="moviemeter-link" target="_blank" title="Movie meter"> <img src="assets/img/moviemeter-logo.png" alt="Movie meter logo" class="moviemeter-logo" /></a>
+		</div>	
 		<div class="col-md-2">
 						<small class="movie-mmrating rating">Moviemeter.nl waardering
 				<p style="width: 140px !important">
