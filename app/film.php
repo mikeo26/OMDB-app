@@ -9,7 +9,50 @@
 		header ("location: 404");
 	} else {
 		$movieId = $_GET['movie-id'];
+		$userId = $_SESSION['user'];
 	}
+
+	$rows1 = $db->prepare("SELECT * FROM bekeken WHERE gebruikersId = '$userId' AND filmId = '$movieId'");
+	$rows1 -> execute();
+	$num_rows1 = $rows1->fetchColumn();
+
+	if($num_rows1 > 0) {
+		$bekekenImg = "assets/img/addBekeken-checked.png";
+	} else {
+		$bekekenImg = "assets/img/addBekeken.png";
+	}
+
+	$rows2 = $db->prepare("SELECT * FROM collectie WHERE gebruikersId = '$userId' AND filmId = '$movieId'");
+	$rows2 -> execute();
+	$num_rows2 = $rows2->fetchColumn();
+
+	if($num_rows2 > 0) {
+		$collectieImg = "assets/img/addCollectie-checked.png";
+	} else {
+		$collectieImg = "assets/img/addCollectie.png";
+	}
+
+	$rows3 = $db->prepare("SELECT * FROM wishlist WHERE gebruikersId = '$userId' AND filmId = '$movieId'");
+	$rows3 -> execute();
+	$num_rows3 = $rows3->fetchColumn();
+
+	if($num_rows3 > 0) {
+		$wishlistImg = "assets/img/addWishlist-checked.png";
+	} else {
+		$wishlistImg = "assets/img/addWishlist.png";
+	}
+
+	$rows4 = $db->prepare("SELECT * FROM watchlist WHERE gebruikersId = '$userId' AND filmId = '$movieId'");
+	$rows4 -> execute();
+	$num_rows4 = $rows4->fetchColumn();
+
+	if($num_rows4 > 0) {
+		$watchlistImg = "assets/img/addWatchlist-checked.png";
+	} else {
+		$watchlistImg = "assets/img/addWatchlist.png";
+	}
+
+	
 
 	// als film met movie-id == 0, direct naar 404 pagina
 ?>
@@ -26,10 +69,10 @@
 
 		<div class="col-sm-6 col-md-8 col-lg-8">
 			<h1 class="movie-title"></h1>
-			<span data-url="addBekeken" filmId="<?php echo $movieId; ?>" id="addbekeken"><img src="assets/img/bekeken.png" alt="Bekeken" title="Bekeken" class="icon inactive"/> bekeken</span>
-			<span data-url="addCollectie" filmId="<?php echo $movieId; ?>" id="collectie"><img src="assets/img/collectie-inactive.png" alt="Collectie" title="Collectie" class="icon inactive"> collectie</span>
-			<span data-url="addWishlist" filmId="<?php echo $movieId; ?>" id="wishlist"><img src="assets/img/wishlist-inactive.png" alt="Wishlist" title="Wishlist" class="icon inactive"> wishlist</span>
-			<span data-url="addWatchlist" filmId="<?php echo $movieId; ?>" id="watchlist"><img src="assets/img/watchlist.png" alt="Watchlist" title="Watchlist" class="icon inactive"> watchlist</span>
+			<span data-url="addBekeken" filmId="<?php echo $movieId; ?>" id="addbekeken"><img src="<?= $bekekenImg ?>" alt="Bekeken" title="Bekeken" class="icon inactive"/> bekeken</span>
+			<span data-url="addCollectie" filmId="<?php echo $movieId; ?>" id="collectie"><img src="<?= $collectieImg ?>" alt="Collectie" title="Collectie" class="icon inactive"> collectie</span>
+			<span data-url="addWishlist" filmId="<?php echo $movieId; ?>" id="wishlist"><img src="<?= $wishlistImg ?>" alt="Wishlist" title="Wishlist" class="icon inactive"> wishlist</span>
+			<span data-url="addWatchlist" filmId="<?php echo $movieId; ?>" id="watchlist"><img src="<?= $watchlistImg ?>" alt="Watchlist" title="Watchlist" class="icon inactive"> watchlist</span>
 			<div class="apiResponse"></div>
 			
 			<p class="movie-plot"><br></p>
@@ -190,11 +233,16 @@ $(document).ready(function(){
 		url = $(this).attr('data-url');
 
 		var filmId = $(this).attr('filmid');
-	console.log(filmId);
-			var film = {
+		
+		console.log(filmId);
+		
+		var film = {
 			movieId: filmId
 		};
+		
 		console.log(url)
+
+		var that = this;
 
 		$.post(
 			"assets/"+url+".php",
@@ -203,6 +251,9 @@ $(document).ready(function(){
 				var obj = JSON.parse(data);
 				console.log(data);
 				console.log(obj.message);
+				if(obj.status == 'success') {
+					$(that).children("img").attr("src", "assets/img/" + url + "-checked.png");	
+				}
 				$(".apiResponse").html(obj.message);
 
 			}

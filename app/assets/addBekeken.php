@@ -22,6 +22,7 @@ if(isset($_SESSION['user']) && $_SESSION['active'] == '1' ) {
 	$stmt->bindParam("movieid", $movieId);
 	$stmt->execute();
 	$response['message'] = "<p class='text-success'><em>U heeft deze film succesvol aan uw bekeken lijst toegevoegd.</p>";
+	$response['status'] = "success";
 	}
 
 
