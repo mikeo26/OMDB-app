@@ -2,7 +2,11 @@
 	
 	<div class="container">
 		<div class="row">
-			<?php if(isset($_SESSION['registered'])) { echo "<p class='text-success'>" . $_SESSION['registered'] . "</p>"; unset($_SESSION['registered']);} ?>
+			<?php 
+			if(isset($_SESSION['registered'])) { echo "<p class='text-success'>" . $_SESSION['registered'] . "</p>"; unset($_SESSION['registered']);} 
+			if(isset($_SESSION['logoutmsg'])) { echo $_SESSION['logoutmsg']; }
+			?>
+
 
 		</div>
 		<div class="row">

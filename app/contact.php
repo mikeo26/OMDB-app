@@ -27,13 +27,13 @@
 					    <div class="form-group">
 					      <label for="naam" class="col-lg-2 control-label">Naam*</label>
 					      <div class="col-lg-10">
-					        <input type="text" class="form-control" id="naam" placeholder="Uw naam" name="naam" minlength="3" required>
+					        <input type="text" class="form-control" placeholder="Uw naam" id="naam" name="naam" <?php if(isset($_SESSION['username'])) { echo "value='" . $_SESSION['username'] . "'"; } ?> minlength="3" required>
 					      </div>
 					    </div>
 					    <div class="form-group">
 					      <label for="e-mail" class="col-lg-2 control-label">E-mailadres*</label>
 					      <div class="col-lg-10">
-					        <input type="email" class="form-control" id="email" placeholder="Uw e-mailadres" name="email" required>
+					        <input type="email" class="form-control" id="email" placeholder="Uw e-mailadres" <?php if(isset($_SESSION['email'])) { echo "value='" . $_SESSION['email'] . "'"; } ?> name="email" required>
 					      </div>
 					    </div>
 					    <div class="form-group">

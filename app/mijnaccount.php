@@ -25,13 +25,14 @@ if($_SESSION['active'] !== '1') {
 
 			?>
 				<h1>Mijn account</h1>
-				<div class="statusMessage"></div>
+				
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4 col-md-4 col-lg-4">
 				<h2>Account bewerken</h2>
 				<h3>Wijzig wachtwoord</h3>
+				<div class="statusMessage1"></div>
 				<form id="changePass">
 					<div class="form-group">
 						<label for="newpass1" class="control-label">Nieuw wachtwoord</label>
@@ -48,6 +49,7 @@ if($_SESSION['active'] !== '1') {
 					<button class="btn btn-primary" id="submitNewPass" name="submitNewPass">Wijzig wachtwoord</button> 
 
 				<h3>Wijzig e-mailadres</h3>
+				<div class="statusMessage2"></div>
 				<form id="changeEmail">
 					<div class="form-group">
 						<label for="email1" class="control-label">Nieuw e-mailadres</label>

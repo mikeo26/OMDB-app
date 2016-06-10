@@ -18,6 +18,8 @@ if(isset($_POST['inloggen'])) {
 		$_SESSION['user'] = $user->gebruikersid;
 		$_SESSION['role'] = $user->gebruikersrol;
 		$_SESSION['active'] = $user->active;
+		$_SESSION['username'] = $user->gebruikersnaam;
+		$_SESSION['email'] = $user->emailadres;
 		header("location: ../mijnaccount?msg=ingelogd");
 	}else {
 		session_start();

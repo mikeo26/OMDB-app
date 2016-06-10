@@ -79,12 +79,21 @@ $("#form-zoeken").validate({
 			{newpass1: password1, newpass2: password2},
 			function(data) {
 				var obj = JSON.parse(data);
-				$(".statusMessage").html(obj.message);
+				$(".statusMessage1").html(obj.message);
 			}
 		);
 		}
 
 
+	});
+
+	$("#changePass").change(function(){
+		var password1 = $("#newpass1").val();
+		var password2 = $("#newpass2").val();
+
+	if(password1 == password2) {
+			$("#newpass2Error").html("");
+		}
 	});
 
 	function isValidEmailAddress(emailAddress) {
@@ -93,6 +102,8 @@ $("#form-zoeken").validate({
 };
 
 	// CHANGE EMAIL
+
+
 
 	$("#submitNewMail").click(function(){
 		var email1 = $("#email1").val();
@@ -110,11 +121,29 @@ $("#form-zoeken").validate({
 			{newmail1: email1, newmail2: email2},
 			function(data) {
 				var obj = JSON.parse(data);
-				$(".statusMessage").html(obj.message);
+				$(".statusMessage2").html(obj.message);
 			}
 		);
 		}
 
+
+	});
+
+	$("#changeEmail").change(function(){
+		var email1 = $("#email1").val();
+		var email2 = $("#email2").val();
+		if(email1 === email2) {
+			$("#newmail2Error").html("");	
+		}
+		if(email1 !== email2) {
+			$("#newmail2Error").html("<p style='color:red;' class='text-danger'>De 2 ingevulde e-mailadressen komen niet overeen.</p>")
+		}
+		if(!isValidEmailAddress(email1)) {
+			$("#newmail1Error").html("<p style='color:red;' class='text-danger'>U heeft geen correct e-mailadres ingevuld.</p>");
+		}
+		if(isValidEmailAddress(email1)) {
+			$("#newmail1Error").html("");
+		}
 
 	});
 });
