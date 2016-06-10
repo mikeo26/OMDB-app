@@ -4,9 +4,9 @@ session_start();
 
 require 'config.php';
 
-$response['message'] = "<p class='text-danger'><em>U dient ingelogd te zijn om een film aan uw wishlist toe te kunnen voegen.</p>";
+$response['message'] = "<p class='text-danger'><em>U dient ingelogd/geactiveerd te zijn om een film aan uw collectie toe te kunnen voegen.</p>";
 
-if(isset($_SESSION['user'])) {
+if(isset($_SESSION['user']) && $_SESSION['active'] == '1' ) {
 	$id = $_SESSION['user'];
 	$movieId = $_REQUEST['movieId'];
 

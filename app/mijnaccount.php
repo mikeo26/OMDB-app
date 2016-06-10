@@ -3,6 +3,12 @@
 if(!isset($_SESSION['user'])) {
 	header("location: inloggen");
 }
+
+if($_SESSION['active'] !== '1') {
+	echo "<div class='container'>U account moet nog geactiveerd worden. Kijk uw e-mail voor meer informatie.</div>";
+	include 'footer.php';
+	die();
+}
 ?>
 
 
