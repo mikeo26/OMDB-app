@@ -26,7 +26,7 @@ session_start();
 	<div class="container">
 		<div class="top-head">
 			<div class="col-sm-12">
-				<p class="info-mail text-center">info@mdwa.nl</span>
+				<span><p class="info-mail text-center">info@mdwa.nl</span>
 				<?php
 				if(isset($_SESSION['user'])) { 
 					echo "<a href='logout' class='pull-right'>Uitloggen</a>";
@@ -79,7 +79,7 @@ session_start();
 	        <?php } ?>
 	        <li><a href="contact">Contact</a></li>
 	      </ul>
-	      <form method="GET" action="zoek"class="navbar-form navbar-right" role="search">
+	      <form method="GET" action="zoek" class="navbar-form navbar-right" role="search">
 	        <div class="form-group">
 	          	<input type="text" class="form-control" placeholder="Zoeken &hellip;" name="zoekterm" id="zoekveld">
 	        </div>
