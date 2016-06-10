@@ -6,7 +6,6 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12 col-md-12 col-lg-12">
-			<h1>Contact</h1>
 			<?php
 			if(isset($_GET['succes'])) {
 				echo "<p>Uw contactaanvraag is succesvol verzonden. Wij zullen zo spoedig mogelijk contact met u opnemen. Klik <a href='/'>hier</a> om terug te keren naar de homepage.";
@@ -21,7 +20,7 @@
 		<div class="row">
 			<div class="col-sm-8 col-md-8 col-lg-8">
 			<?php if(isset($_SESSION['contact'])) { echo $_SESSION['contact']; unset($_SESSION['contact']); } ?>
-				<h2>Contactformulier</h2>
+				<h2>Contact</h2>
 					<form class="form-horizontal" method="POST" action="assets/contact.php" id="contactForm">
 					  <fieldset>
 					    <div class="form-group">
