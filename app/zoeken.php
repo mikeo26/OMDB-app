@@ -91,7 +91,7 @@ if(isset($_GET['zoekterm'])){
 
   	<div class="row">
 	    <div class="zoekresultaten col-md-12">
-	    	<h3>Zoekresultaten</h3>
+	    	<h3 style="display:none;">Zoekresultaten</h3>
 	    	<?php include 'assets/no-javascript.php'; ?>
 	    </div>
 	</div>
@@ -109,7 +109,7 @@ var filmdata;
 
 function zoeken(){
 	var myNode = document.getElementById("zoekresultaten");
-
+	$('.zoekresultaten h3').css('display', 'initial');
 	while (myNode.firstChild) {
 	    myNode.removeChild(myNode.firstChild);
 	}	
