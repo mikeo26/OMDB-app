@@ -9,6 +9,7 @@ session_start();
 <html>
 <head>
 	<title></title>
+	<meta charset="UTF-8">
 	<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 	<script src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="assets/js/queries.js"></script>
