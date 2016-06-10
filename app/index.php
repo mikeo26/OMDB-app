@@ -3,8 +3,11 @@
 	<div class="container">
 		<div class="row">
 			<?php 
-			if(isset($_SESSION['registered'])) { echo "<p class='text-success'>" . $_SESSION['registered'] . "</p>"; unset($_SESSION['registered']);} 
-			if(isset($_SESSION['logoutmsg'])) { echo $_SESSION['logoutmsg']; }
+			if(isset($_SESSION['registered'])) { echo "<p class='text-success'>" . $_SESSION['registered'] . "</p>"; unset($_SESSION['registered']);
+			unset($_SESSION['registered']);
+		} 
+			if(isset($_SESSION['logoutmsg'])) { echo $_SESSION['logoutmsg'];
+			unset($_SESSION['logoutmsg']); }
 			?>
 
 
