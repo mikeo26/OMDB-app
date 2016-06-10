@@ -17,7 +17,6 @@ if(isset($_GET['zoekterm'])){
 			<form action="#" class="form-horizontal" id="form-zoeken">
 				<fieldset>
 				  	<div class="form-group">
-				    	
 				    	<div class="col-sm-12" id="title-wrapper">
 				    		<label class="sr-only" for="titel">Titel</label>
 				    		<input type="text" class="form-control" id="titel" placeholder="search" required>
@@ -30,7 +29,6 @@ if(isset($_GET['zoekterm'])){
 				  	</div>
 
 				  	<div class="form-group">
-				  		
 						<div class="col-md-3">
 							<label for="jaar">Jaartal van</label>
 							<select name="jaar-van" id="jaar-van" class="form-control">
@@ -56,11 +54,6 @@ if(isset($_GET['zoekterm'])){
 								</script>
 					  		</select>
 					  	</div>
-
-						<div class="col-md-6">
-						<label for="acteur">Acteur</label>
-							<input type="text" class="form-control pull-right" id="acteur" placeholder="search" />
-						</div>
 				  	</div>
 
 				  	<div class="form-group">
@@ -85,24 +78,6 @@ if(isset($_GET['zoekterm'])){
 					  			<option value="Avontuur">Avontuur</option>
 					  		</select>
 					  	</div>
-
-						<div class="col-md-6">
-							<label for="regisseur">Regisseur</label>
-				    		<input type="text" class="form-control" id="regisseur" placeholder="search">
-						</div>
-				  	</div>
-
-				  	<div class="form-group">
-				  		<div class="col-md-6">
-				  			<label for="speelduur">Speelduur</label>
-					  		<select name="speelduur" id="speelduur" class="form-control">
-					  			<option value="">-- Maak een keuze --</option>
-					  			<option value="60">< 60 minuten</option>
-					  			<option value="60-90">60 - 90 minuten</option>
-					  			<option value="90-240">90 - 240 minuten</option>
-					  			<option value="240">240 > minuten</option>
-					  		</select>
-				  		</div>
 				  	</div>
 
 				  	<div class="col-md-12">
@@ -150,10 +125,7 @@ function zoeken(){
 	}
 	var jaarVan = document.getElementById("jaar-van").value;
 	var jaarTot = document.getElementById("jaar-tot").value;
-	var acteur = document.getElementById("acteur").value;
 	var genre =  document.getElementById("categorie").value;
-	var regisseur = document.getElementById("regisseur").value;
-	var speelduur = document.getElementById("speelduur").value;
 
 	$.ajax({
 	dataType: "jsonp",
@@ -198,8 +170,6 @@ function zoeken(){
 		    	if(jQuery.inArray( genre, details.genres ) >= 0 || genre == ""){
 		    		omdbCall(details.imdb, mm);
 			    	mm.genres = details.genres;
-			    	mm.actors = details.actors.name;
-			    	mm.directors = details.directors;
 			    	delete filmdata;
 		    	}
 		    }
@@ -229,7 +199,6 @@ function zoeken(){
 		    		title: title,
 		    		year: mm.year,
 		    		poster: poster,
-		    		actors: mm.actors,
 		    		genres: mm.genres
 		    	}
 
