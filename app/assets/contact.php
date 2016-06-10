@@ -3,6 +3,7 @@
 require 'config.php';
 
 if(isset($_POST['sendcontact'])) {
+	session_start();
 	$naam 		= $_POST['naam'];
 	$email 		= $_POST['email'];
 	$telefoon 	= $_POST['telefoon'];
@@ -22,11 +23,27 @@ if(isset($_POST['sendcontact'])) {
     // $_SESSION['contact'] = "<p class='text-success'>Uw contactaanvraag is succesvol verzonden. Wij zullen zo spoedig mogelijk contact met u opnemen.</p>";
     // header("location: ../contact");
 
-	if(mail($to, $subject, $message, $headers)) {
-	    session_start();
+    if($naam == "") {
+    	$_SESSION['contact'] = "<p class='text-danger'>U dient alle verplichte velden in te vullen</p>";
+    	header("location: ../contact");
+    } elseif($email == "") {
+      	$_SESSION['contact'] = "<p class='text-danger'>U dient alle verplichte velden in te vullen</p>";
+    	header("location: ../contact");
+    } elseif($vraag == "") {
+       	$_SESSION['contact'] = "<p class='text-danger'>U dient alle verplichte velden in te vullen</p>";
+    	header("location: ../contact");
+    }elseif (strlen($vraag < 11)) {
+       	$_SESSION['contact'] = "<p class='text-danger'>Uw vraagt dient minstens 10 karakters te bevatten</p>";
+    	header("location: ../contact");		
+	}else {
+    	 if(mail($to, $subject, $message, $headers)) {
+
 	    $_SESSION['contact'] = "<p class='text-success'>Uw contactaanvraag is succesvol verzonden. Wij zullen zo spoedig mogelijk contact met u opnemen.</p>";
 	    header("location: ../contact");
 	}
+    }
+
+
 
 	// if(!empty($naam)) {
 	// 	header("location: /contact?succes");
