@@ -1,7 +1,7 @@
 var errormsg = '<p class="errormsg reload" onClick="window.location.reload()">De content kon niet worden geladen <br /> Klik hier om het nog een keer te proberen.</p>';
 
 // Home pagina - Aanbevolen films
-for(i=0; i < 10; i++){
+for(i=0; i < 4; i++){
   var rand =  Math.floor((Math.random() * 100000) + 1);
   $.ajax({
     dataType: "jsonp",
@@ -10,8 +10,39 @@ for(i=0; i < 10; i++){
     cache: false,
     async: true,
     success: function(data){          
-          $('#aanbevolenFilmContent').append("<div class='movie' movie-id='" + data.id + "'><span><a href='film?movie-id=" + data.id + "'>(" + data.year + ") "+data.title+"</a></span>");
+          $('#aanbevolenFilmContent').append("<div id='" + data.id + "' class='movie' movie-id='" + data.id + "'><span><a href='film?movie-id=" + data.id + "'>" +data.title+" (" + data.year + ") </a></span>");
           $('.loading').hide();
+
+            $.ajax({
+            dataType: "jsonp",
+            url: 'http://www.omdbapi.com/?apikey=acb7db4&i=' + data.imdb,
+            type: "GET",
+            cache: false,
+            async: true,
+            success: function(omdb){
+
+              if( omdb.Poster == undefined || omdb.Poster == "N/A"){
+                var poster = "assets/img/no-poster.jpg";
+              } else {
+                var poster = omdb.Poster;
+              }
+
+              var title = data.title;
+
+              filmdata = {
+                id: data.id,
+                title: title,
+                year: data.year,
+                poster: poster
+              }
+
+              var filmId = "#" + data.id;
+              console.log(filmId);
+              $(filmId).append("<img src='" + filmdata.poster + "' alt='Oops! Er ging iets mis met het laden van de filmposter...' style='width: 100%' class='film-poster' /> <br>");
+
+              }
+              });
+
       },
     error: function(){
         $('#aanbevolenFilmsContent').append(errormsg);

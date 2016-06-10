@@ -78,9 +78,14 @@
     }
 }
 
-.aanbevolen-films .movie-poster{
+/*.aanbevolen-films .movie-poster{
     max-width: 100px;
     margin: 0;
+}*/
+
+.aanbevolen-films .movie img{
+    max-width: 50%;
+    display: block;
 }
 
 @media screen and (max-width: 991px){
