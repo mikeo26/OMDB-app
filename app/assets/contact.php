@@ -32,10 +32,7 @@ if(isset($_POST['sendcontact'])) {
     } elseif($vraag == "") {
        	$_SESSION['contact'] = "<p class='text-danger'>U dient alle verplichte velden in te vullen</p>";
     	header("location: ../contact");
-    }elseif (strlen($vraag < 11)) {
-       	$_SESSION['contact'] = "<p class='text-danger'>Uw vraagt dient minstens 10 karakters te bevatten</p>";
-    	header("location: ../contact");		
-	}else {
+    }else {
     	 if(mail($to, $subject, $message, $headers)) {
 
 	    $_SESSION['contact'] = "<p class='text-success'>Uw contactaanvraag is succesvol verzonden. Wij zullen zo spoedig mogelijk contact met u opnemen.</p>";
