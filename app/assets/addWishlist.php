@@ -14,6 +14,8 @@ if(isset($_SESSION['user']) && $_SESSION['active'] == '1' ) {
 	$rows -> execute();
 	$num_rows = $rows->fetchColumn();
 
+		// Als film al bestaat in lijst, niet toevoegen
+
 	if($num_rows > 0) {
 		$response['message'] = "<p class='text-danger'><em>U heeft deze film al aan uw wishlist toegevoegd.</p>";
 	}else {
